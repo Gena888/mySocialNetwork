@@ -1,8 +1,8 @@
 import React from 'react';
-import s from './Dialogs.module.css'
+import s from './Messages.module.css'
 
 
-const Dialogs = (props) => {
+const Messages = (props) => {
     return (
         <div>
             Dialogs
@@ -10,4 +10,4 @@ const Dialogs = (props) => {
     );
 }
 
-export default Dialogs;
+export default Messages;
