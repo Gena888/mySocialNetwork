@@ -5,10 +5,14 @@ import s from './MyPosts.module.css';
 const MyPosts = () => {
     return (
         <div className={s.postsBlock} >
-            my posts
+            <h3> my posts</h3>
             <div>
-                <textarea></textarea>
-                <button>add post</button>
+                <div>
+                    <textarea></textarea>
+                </div>
+                <div>
+                    <button>add post</button>
+                </div>
             </div>
 
             <div className={s.posts}>
