@@ -1,3 +1,7 @@
 .posts {
   color: aliceblue;
 }
+
+.postsBlock {
+  padding: 10px;
+}
