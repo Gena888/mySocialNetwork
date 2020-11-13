@@ -6,6 +6,7 @@ const DialogItem = (props) => {
     return (
         <div className={s.dialog + ' ' + s.active}>
             <NavLink to={"/dialogs/" + props.id}>{props.name}</NavLink>
+            {/* jsx элемент принимает данные для отрисовки из props, которые туда попали из массива данных через .map */}
         </div>
     );
 }
@@ -42,28 +43,30 @@ const Dialogs = (props) => {
     //     <DialogItem name={dialogsData[4].name} id={dialogsData[4].id} />
     // ]
 
-    // let dialogsArray = dialogsData.map((dialog) => <DialogItem name={dialog.name} id={dialog.id}/>) 
 
-    let messageArray = [
-        <Message message={messagesData[0].message} />,
-        <Message message={messagesData[1].message} />,
-        <Message message={messagesData[2].message} />,
-        <Message message={messagesData[3].message} />
-    ]
 
+    // let messageArray = [
+    //     <Message message={messagesData[0].message} />,
+    //     <Message message={messagesData[1].message} />,
+    //     <Message message={messagesData[2].message} />,
+    //     <Message message={messagesData[3].message} />
+    // ]
+
+    let dialogsElements = dialogsData.map((dialogEl) => <DialogItem name={dialogEl.name} id={dialogEl.id} />)
+    let messagesElements = messagesData.map((messageEl) => <Message message={messageEl.message} />)
+    // создаём массив jsx элементов и передаём пропсам значения из свойств обьектов массива data
+    // массив jsx элементов содержит набор jsx элементов, которые в свою очередь отрисовывают инфу на странице исходя из данных переданных в props
 
     return (
         <div className={s.dialogs}>
 
             <div className={s.dialogsItems}>
-                {/* {dialogsArray} */}
-                {dialogsData.map((dialogEl) => <DialogItem name={dialogEl.name} id={dialogEl.id}/>)}
-
+                {dialogsElements}
+                {/* вставляем массив jsx элементов созданный ранее */}
             </div>
 
             <div className={s.messages}>
-                {/* {messageArray} */}
-                {messagesData.map((messageEl) => <Message message={messageEl.message}/> )}
+                {messagesElements}
             </div>
         </div>
     );
