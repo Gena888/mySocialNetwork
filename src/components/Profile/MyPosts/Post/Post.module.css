@@ -1,3 +1,9 @@
 .item {
   color: greenyellow;
+  padding-top: 30px;
+}
+
+.itemImg {
+  width: 100px;
+  margin-right: 10px;
 }
