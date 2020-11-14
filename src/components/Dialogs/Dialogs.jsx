@@ -9,8 +9,8 @@ const Dialogs = (props) => {
 
 
 
-    let dialogsElements = props.dialogsData.map((dialogEl) => <DialogItem name={dialogEl.name} id={dialogEl.id} />)
-    let messagesElements = props.messagesData.map((messageEl) => <Message message={messageEl.message} />)
+    let dialogsElements = props.state.dialogsData.map((dialogEl) => <DialogItem name={dialogEl.name} id={dialogEl.id} />)
+    let messagesElements = props.state.messagesData.map((messageEl) => <Message message={messageEl.message} />)
     // создаём массив jsx элементов и передаём пропсам значения из свойств обьектов массива data
     // массив jsx элементов содержит набор jsx элементов, которые в свою очередь отрисовывают инфу на странице исходя из данных переданных в props
 
