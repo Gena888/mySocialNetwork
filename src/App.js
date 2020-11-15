@@ -17,7 +17,7 @@ const App = (props) => {
       <div className="app-wrapper">
 
         <Header />
-        <Nav />
+        <Nav state={props.state.navPage}/>
 
         <div className='app-wrapper-content'>
 
