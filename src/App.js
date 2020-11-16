@@ -7,7 +7,7 @@ import Dialogs from './components/Dialogs/Dialogs';
 import News from './components/News/News';
 import Music from './components/Music/Music';
 import Settings from './components/Settings/Settings';
-import {Route } from 'react-router-dom';
+import { Route } from 'react-router-dom';
 
 
 
@@ -21,9 +21,11 @@ const App = (props) => {
 
       <div className='app-wrapper-content'>
         <Route path='/Profile'
-          render={() => <Profile state={props.state.profilePage} addPost={props.addPost} />} />
+          render={() => <Profile profilePage={props.state.profilePage}
+            addPost={props.addPost}
+            updateNewPostText={props.updateNewPostText} />} />
         <Route path='/Dialogs'
-          render={() => <Dialogs state={props.state.dialogsPage} />} />
+          render={() => <Dialogs dialogsPage={props.state.dialogsPage} />} />
         <Route path='/News' render={() => <News />} />
         <Route path='/Music' render={() => <Music />} />
         <Route path='/Settings' render={() => <Settings />} />

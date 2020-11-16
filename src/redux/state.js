@@ -1,12 +1,16 @@
 import { reReanderEntireTree } from "../render";
 
+
+
 let state = {
     profilePage: {
         postsData: [
             { id: 1, likes: 121, message: 'hallow it.s me' },
             { id: 2, likes: 231, message: 'it is my firs post' },
             { id: 3, likes: 321, message: 'second post hear' }
-        ]
+        ],
+        newPostText: 'it-camasutra'
+
     },
     dialogsPage: {
         dialogsData: [
@@ -34,15 +38,22 @@ let state = {
     }
 }
 
-export let addPost = (postMessage) => {
+window.state = state;
+
+export let addPost = () => {
     let newPost = {
         id: 5,
-        message: postMessage,
+        message: state.profilePage.newPostText,
         likes: 0
     };
     state.profilePage.postsData.push(newPost)
     reReanderEntireTree(state);
     debugger;
+}
+
+export let updateNewPostText = (newText) => {
+    state.profilePage.newPostText = newText;
+    reReanderEntireTree(state);
 }
 
 export default state;

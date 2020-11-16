@@ -7,20 +7,29 @@ import s from './MyPosts.module.css';
 const MyPosts = (props) => {
 
     let postsElement = props.postsData.map(postEl => <Post likes={postEl.likes} message={postEl.message} />)
-
     let newPostElement = React.createRef();
-
     let addPost = () => {
-        let text = newPostElement.current.value;
-        props.addPost(text);
+        props.addPost();
     };
+    // теперь для поста текст берётся не из инпута через .carent.value по 
+    // ссылке созданной с помощью React.createRef а сразу в state функцией из state. 
+
+    let onPostChange = () => {
+        let text = newPostElement.current.value;
+        props.updateNewPostText(text);
+    };
+    //создаём функцию onPostCahnge которая меняет state значение забиток
+    // в state для value в текст эриа. почле чего ререндарит сразу страницу 
 
     return (
         <div className={s.postsBlock} >
             <h3> my posts</h3>
             <div>
                 <div>
-                    <textarea ref={newPostElement}></textarea>
+                    <textarea onChange={onPostChange} ref={newPostElement}
+                        value={props.newPostText} />
+                    {/* передали значение value из state через пропс. 
+                        и передали функцию onPost обьявленную выше */}
                 </div>
                 <div>
                     <button onClick={addPost}>add post</button>
