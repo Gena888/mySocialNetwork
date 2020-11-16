@@ -8,10 +8,10 @@ const DialogItem = (props) => {
     return (
         <div className={s.dialog + ' ' + s.active}>
             <div className={s.avaImg}>
-                <img  src={props.imgSrc} alt="avatar" />
+                <NavLink to={"/dialogs/" + props.id}><img src={props.imgSrc} alt="avatar" /></NavLink>
             </div>
 
-            <NavLink to={"/dialogs/" + props.id}>{props.name}</NavLink>
+            <NavLink className={s.name} to={"/dialogs/" + props.id}>{props.name}</NavLink>
             {/* jsx элемент принимает данные для отрисовки из props, которые туда попали из массива данных через .map */}
         </div>
     );

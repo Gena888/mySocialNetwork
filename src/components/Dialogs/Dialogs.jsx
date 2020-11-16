@@ -7,7 +7,16 @@ import Message from './Message/Message';
 
 const Dialogs = (props) => {
 
+    let text = React.createRef();
+    // создал пустую ссулку
 
+    let showMessage = () => {
+        let messageTest = text.current.value;
+        alert (messageTest); 
+    }
+    // создал функцию которая вытаскивает значение с обьекта по ссылке text 
+    // current - обращение к нативному элементу DOM 
+    // и функция отображает значение нативного элемента через алерт
 
     let dialogsElements =
         props.state.dialogsData.map((dialogEl) =>
@@ -28,6 +37,12 @@ const Dialogs = (props) => {
 
             <div className={s.messages}>
                 {messagesElements}
+                <textarea ref={text}></textarea>
+                {/* привязал ссылку к текст эриа */}
+                <div>
+                    <button onClick={showMessage}>получи своё сообщение</button>
+                    {/* передал переменную обработчику онклик для вызова функции  при клике */}
+                </div>
             </div>
         </div>
     );

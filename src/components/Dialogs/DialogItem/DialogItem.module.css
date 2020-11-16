@@ -1,24 +1,21 @@
-.dialog {
-   
-}
+.dialog {}
 
-.dialog a {
-    position: relative;
-    bottom: 15px;   
-}
+.dialog a {}
 
-.active {
-   
-}
-
+.active {}
 
 .avaImg {
     display: inline-block;
     padding-right: 10%;
 }
 
- .avaImg img {
+.avaImg img {
     height: 50px;
     width: 50px;
     border-radius: 50px;
+}
+
+.name {
+    position: relative;
+    bottom: 15px;
 }
