@@ -1,7 +1,3 @@
-import { reReanderEntireTree } from "../render";
-
-
-
 let state = {
     profilePage: {
         postsData: [
@@ -40,21 +36,30 @@ let state = {
 
 window.state = state;
 
-export let addPost = () => {
+
+
+export const addPost = () => {
     let newPost = {
         id: 5,
         message: state.profilePage.newPostText,
         likes: 0
     };
     state.profilePage.postsData.push(newPost)
-    reReanderEntireTree(state);
+    reReanderEntireTree();
     state.profilePage.newPostText = '';
-    debugger;
 }
 
-export let updateNewPostText = (newText) => {
+export const updateNewPostText = (newText) => {
     state.profilePage.newPostText = newText;
-    reReanderEntireTree(state);
+    reReanderEntireTree();
+}
+
+let reReanderEntireTree = () => {
+}
+
+export const subscribe = (observer) => {
+    reReanderEntireTree = observer;
+    // обсеовео это паттерн почитать. // publisher-subscriber
 }
 
 export default state;
