@@ -25,7 +25,8 @@ const Dialogs = (props) => {
         props.state.messagesData.map((messageEl) =>
             <Message message={messageEl.message} addresserYou={messageEl.addresserYou} />)
     // создаём массив jsx элементов и передаём пропсам значения из свойств обьектов массива data
-    // массив jsx элементов содержит набор jsx элементов, которые в свою очередь отрисовывают инфу на странице исходя из данных переданных в props
+    // массив jsx элементов содержит набор jsx элементов, которые в свою очередь отрисовывают
+    //  инфу на странице исходя из данных переданных в props
 
     return (
         <div className={s.dialogs}>
@@ -50,4 +51,3 @@ const Dialogs = (props) => {
 
 export default Dialogs;
 
-//!!! ДОДЕЛАТЬ 29 урок со стейтом, доверстать иконки для месаджей и сделать sidebar.
