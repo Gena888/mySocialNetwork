@@ -48,6 +48,7 @@ export let addPost = () => {
     };
     state.profilePage.postsData.push(newPost)
     reReanderEntireTree(state);
+    state.profilePage.newPostText = '';
     debugger;
 }
 
