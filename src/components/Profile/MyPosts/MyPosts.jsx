@@ -18,7 +18,7 @@ const MyPosts = (props) => {
         let text = newPostElement.current.value;
         props.store.updateNewPostText(text);
     };
-    //создаём функцию onPostCahnge которая меняет state значение забиток
+    //создаём функцию onPostCahnge которая меняет state значение забитом
     // в state для value в текст эриа. почле чего ререндарит сразу страницу 
 
     return (

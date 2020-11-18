@@ -12,13 +12,12 @@ let reReanderEntireTree = () => {
   ReactDOM.render(
     <React.StrictMode>
       <BrowserRouter>
-        <App store={store} state={store.state}/>
+        <App store={store} state={store.getState()}/>
       </BrowserRouter>
     </React.StrictMode>,
     document.getElementById('root')
   );
 }
-console.log(store)
 
 
 reReanderEntireTree(); 
