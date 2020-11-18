@@ -6,17 +6,17 @@ import s from './MyPosts.module.css';
 
 const MyPosts = (props) => {
 
-    let postsElement = props.postsData.map(postEl => <Post likes={postEl.likes} message={postEl.message} />)
+    let postsElement = props.state.profilePage.postsData.map(postEl => <Post likes={postEl.likes} message={postEl.message} />)
     let newPostElement = React.createRef();
     let addPost = () => {
-        props.addPost();
+        props.store.addPost();
     };
     // теперь для поста текст берётся не из инпута через .carent.value по 
     // ссылке созданной с помощью React.createRef а сразу в state функцией из state. 
 
     let onPostChange = () => {
         let text = newPostElement.current.value;
-        props.updateNewPostText(text);
+        props.store.updateNewPostText(text);
     };
     //создаём функцию onPostCahnge которая меняет state значение забиток
     // в state для value в текст эриа. почле чего ререндарит сразу страницу 
@@ -27,7 +27,7 @@ const MyPosts = (props) => {
             <div>
                 <div>
                     <textarea onChange={onPostChange} ref={newPostElement}
-                        value={props.newPostText} />
+                        value={props.state.profilePage.newPostText} />
                     {/* передали значение value из state через пропс. 
                         и передали функцию onPost обьявленную выше */}
                 </div>

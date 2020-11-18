@@ -1,6 +1,5 @@
 import React from 'react';
 import s from './Dialogs.module.css'
-import { NavLink } from 'react-router-dom';
 import DialogItem from './DialogItem/DialogItem';
 import Message from './Message/Message';
 
@@ -19,10 +18,10 @@ const Dialogs = (props) => {
     // и функция отображает значение нативного элемента через алерт
 
     let dialogsElements =
-        props.dialogsPage.dialogsData.map((dialogEl) =>
+        props.state.dialogsPage.dialogsData.map((dialogEl) =>
             <DialogItem name={dialogEl.name} id={dialogEl.id} imgSrc={dialogEl.imgSrc} />)
     let messagesElements =
-        props.dialogsPage.messagesData.map((messageEl) =>
+        props.state.dialogsPage.messagesData.map((messageEl) =>
             <Message message={messageEl.message} addresserYou={messageEl.addresserYou} />)
     // создаём массив jsx элементов и передаём пропсам значения из свойств обьектов массива data
     // массив jsx элементов содержит набор jsx элементов, которые в свою очередь отрисовывают
