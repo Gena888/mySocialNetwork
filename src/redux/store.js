@@ -70,7 +70,7 @@ let store = {
             this._callSubscriber();
             this._state.profilePage.newPostText = '';
         } else if (action.type === 'UPDATE-NEW-POST-TEXT') {
-            this._state.profilePage.newPostText = newText;
+            this._state.profilePage.newPostText = action.newText;
             this._callSubscriber();
         }
     }

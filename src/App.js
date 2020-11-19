@@ -13,18 +13,17 @@ import { Route } from 'react-router-dom';
 
 
 const App = (props) => {
-
+// debugger;
   return (
     <div className="app-wrapper">
 
       <Header />
-      <Nav store={props.store} state={props.state} />
-
-      <div className='app-wrapper-content'>
+      <Nav state={props.state} />
+          <div className='app-wrapper-content'>
         <Route path='/Profile'
-          render={() => <Profile store={props.store} state={props.state} />} />
+          render={() => <Profile state={props.state} dispatch={props.dispatch}/>} />
         <Route path='/Dialogs'
-          render={() => <Dialogs store={props.store} state={props.state}  />} />
+          render={() => <Dialogs state={props.state}  />} />
         <Route path='/News' render={() => <News />} />
         <Route path='/Music' render={() => <Music />} />
         <Route path='/Settings' render={() => <Settings />} />

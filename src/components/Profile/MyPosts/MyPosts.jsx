@@ -8,15 +8,17 @@ const MyPosts = (props) => {
 
     let postsElement = props.state.profilePage.postsData.map(postEl => <Post likes={postEl.likes} message={postEl.message} />)
     let newPostElement = React.createRef();
+
     let addPost = () => {
-        props.store.addPost();
+        props.dispatch({type: 'ADD-POST'});
     };
     // теперь для поста текст берётся не из инпута через .carent.value по 
     // ссылке созданной с помощью React.createRef а сразу в state функцией из state. 
 
     let onPostChange = () => {
         let text = newPostElement.current.value;
-        props.store.updateNewPostText(text);
+        // props.store.updateNewPostText(text);
+        props.dispatch({type: 'UPDATE-NEW-POST-TEXT', newText: text});
     };
     //создаём функцию onPostCahnge которая меняет state значение забитом
     // в state для value в текст эриа. почле чего ререндарит сразу страницу 
