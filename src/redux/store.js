@@ -34,40 +34,47 @@ let store = {
         }
     },
 
+    _callSubscriber() {
+    },
+    // _postAdder() {
+    //     let newPost = {
+    //         id: 5,
+    //         message: this._state.profilePage.newPostText,
+    //         likes: 0
+    //     };
+    //     this._state.profilePage.postsData.push(newPost);
+    //     this._callSubscriber();
+    //     this._state.profilePage.newPostText = '';
+    // },
+    // _updaterNewPostText(newText) {
+    //     this._state.profilePage.newPostText = newText;
+    //     this._callSubscriber();
+    // },
+
+
     getState() {
         return this._state;
-    },
-    _callSubscriber() {
     },
     subscribe(observer) {
         this._callSubscriber = observer;
     },
 
-    _postAdder() {
-        let newPost = {
-            id: 5,
-            message: this._state.profilePage.newPostText,
-            likes: 0
-        };
-        this._state.profilePage.postsData.push(newPost);
-        this._callSubscriber();
-        this._state.profilePage.newPostText = '';
-    },
-
-    _updaterNewPostText(newText) {
-        this._state.profilePage.newPostText = newText;
-        this._callSubscriber();
-    },
-
-    addPost() {
-        this._postAdder();
-    },
-
-    updateNewPostText(newText) {
-        // debugger
-        // console.log('this')
-        return this._updaterNewPostText(newText);
+    dispatch(action) { //type: "ADD-POST"
+        if (action.type === 'ADD-POST') {
+            let newPost = {
+                id: 5,
+                message: this._state.profilePage.newPostText,
+                likes: 0
+            };
+            this._state.profilePage.postsData.push(newPost);
+            this._callSubscriber();
+            this._state.profilePage.newPostText = '';
+        } else if (action.type === 'UPDATE-NEW-POST-TEXT') {
+            this._state.profilePage.newPostText = newText;
+            this._callSubscriber();
+        }
     }
+
 }
 
 export default store;
