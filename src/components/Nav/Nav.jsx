@@ -4,7 +4,7 @@ import s from './Nav.module.css';
 import NavFriends from './Friends/NavFriends';
 
 const Nav = (props) => {
-    debugger
+    // debugger
     // console.log(props)
     let navFriend =
         props.state.navPage.navFriendsData.map(navFriendEl =>
@@ -41,4 +41,3 @@ const Nav = (props) => {
 export default Nav;
 
 
-//!!! пересмотреть 38 и понять почему у меня в нав state - undefined после нажания адд пост

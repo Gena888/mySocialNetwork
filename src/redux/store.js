@@ -61,17 +61,18 @@ let store = {
 
     dispatch(action) { //type: "ADD-POST"
         if (action.type === 'ADD-POST') {
+            // debuggera
             let newPost = {
                 id: 5,
                 message: this._state.profilePage.newPostText,
                 likes: 0
             };
             this._state.profilePage.postsData.push(newPost);
-            this._callSubscriber();
+            this._callSubscriber(store.getState());
             this._state.profilePage.newPostText = '';
         } else if (action.type === 'UPDATE-NEW-POST-TEXT') {
             this._state.profilePage.newPostText = action.newText;
-            this._callSubscriber();
+            this._callSubscriber(store.getState());
         }
     }
 

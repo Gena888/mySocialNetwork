@@ -8,6 +8,7 @@ import { BrowserRouter } from 'react-router-dom';
 
 
 let reReanderEntireTree = (state) => {
+  // debugger
 
   ReactDOM.render(
     <React.StrictMode>
