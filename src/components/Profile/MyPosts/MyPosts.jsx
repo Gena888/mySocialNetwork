@@ -1,6 +1,7 @@
 import React from 'react';
 import Post from './Post/Post';
 import s from './MyPosts.module.css';
+import { addPostActionCreator, updateNewPostTextActionCreator } from './../../../redux/store';
 
 
 
@@ -10,18 +11,13 @@ const MyPosts = (props) => {
     let newPostElement = React.createRef();
 
     let addPost = () => {
-        props.dispatch({type: 'ADD-POST'});
+        props.dispatch(addPostActionCreator());
     };
-    // теперь для поста текст берётся не из инпута через .carent.value по 
-    // ссылке созданной с помощью React.createRef а сразу в state функцией из state. 
 
     let onPostChange = () => {
         let text = newPostElement.current.value;
-        // props.store.updateNewPostText(text);
-        props.dispatch({type: 'UPDATE-NEW-POST-TEXT', newText: text});
+        props.dispatch(updateNewPostTextActionCreator(text));
     };
-    //создаём функцию onPostCahnge которая меняет state значение забитом
-    // в state для value в текст эриа. почле чего ререндарит сразу страницу 
 
     return (
         <div className={s.postsBlock} >
@@ -30,8 +26,6 @@ const MyPosts = (props) => {
                 <div>
                     <textarea onChange={onPostChange} ref={newPostElement}
                         value={props.state.profilePage.newPostText} />
-                    {/* передали значение value из state через пропс. 
-                        и передали функцию onPost обьявленную выше */}
                 </div>
                 <div>
                     <button onClick={addPost}>add post</button>
