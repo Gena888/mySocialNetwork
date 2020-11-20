@@ -2,20 +2,25 @@ import React from 'react';
 import s from './Dialogs.module.css'
 import DialogItem from './DialogItem/DialogItem';
 import Message from './Message/Message';
+import { addNewMessageActionCreator, updateNewMessageTextActionCreator } from './../../redux/store';
+
+
 
 
 const Dialogs = (props) => {
 
-    let text = React.createRef();
-    // создал пустую ссулку
+    // let newMessage = React.createRef();
 
-    let showMessage = () => {
-        let messageTest = text.current.value;
-        alert (messageTest); 
-    }
-    // создал функцию которая вытаскивает значение с обьекта по ссылке text 
-    // current - обращение к нативному элементу DOM 
-    // и функция отображает значение нативного элемента через алерт
+    let addNewMessage = () => {
+        props.dispatch(addNewMessageActionCreator());
+    };
+
+    let onMessageTextChange = (event) => {
+        // debugger
+        // let newMessageText = newMessage.current.value;
+        let newMessageText = event.target.value;
+        props.dispatch(updateNewMessageTextActionCreator(newMessageText));
+    };
 
     let dialogsElements =
         props.state.dialogsPage.dialogsData.map((dialogEl) =>
@@ -23,25 +28,19 @@ const Dialogs = (props) => {
     let messagesElements =
         props.state.dialogsPage.messagesData.map((messageEl) =>
             <Message message={messageEl.message} addresserYou={messageEl.addresserYou} />)
-    // создаём массив jsx элементов и передаём пропсам значения из свойств обьектов массива data
-    // массив jsx элементов содержит набор jsx элементов, которые в свою очередь отрисовывают
-    //  инфу на странице исходя из данных переданных в props
 
     return (
         <div className={s.dialogs}>
 
             <div className={s.dialogsItems}>
                 {dialogsElements}
-                {/* вставляем массив jsx элементов созданный ранее */}
             </div>
-
             <div className={s.messages}>
                 {messagesElements}
-                <textarea ref={text}></textarea>
-                {/* привязал ссылку к текст эриа */}
+                <textarea  onChange={onMessageTextChange}
+                    value={props.state.dialogsPage.newMessageTextData}></textarea>
                 <div>
-                    <button onClick={showMessage}>получи своё сообщение</button>
-                    {/* передал переменную обработчику онклик для вызова функции  при клике */}
+                    <button onClick={addNewMessage}>получи своё сообщение</button>
                 </div>
             </div>
         </div>
