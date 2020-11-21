@@ -1,7 +1,8 @@
-const ADD_POST = 'ADD-POST';
-const UPDATE_NEW_POST_TEXT = 'UPDATE-NEW-POST-TEXT';
-const ADD_NEW_MESSAGE = 'ADD-NEW-MESSAGE';
-const UPDATE_NEW_MESSAGE_TEXT = 'UPDATE-NEW-MESSAGE-TEXT';
+import dialogsReducer from "./dialogs-reducer";
+import navReducer from "./nav-reducer";
+import profileReducer from "./profile-reducer";
+
+
 
 let store = {
     _state: {
@@ -50,58 +51,16 @@ let store = {
         this._callSubscriber = observer;
     },
 
-    dispatch(action) { //type: "ADD-POST"
-        if (action.type === ADD_POST) {
-            // debuggera
-            let newPost = {
-                id: 5,
-                message: this._state.profilePage.newPostText,
-                likes: 0
-            };
-            this._state.profilePage.postsData.push(newPost);
-            this._state.profilePage.newPostText = '';
-            this._callSubscriber(store.getState());
+    dispatch(action) { 
+        this._state.profilePage = profileReducer(this._state.profilePage, action);
+        this._state.dialogsPage = dialogsReducer(this._state.dialogsPage, action);
+        this._state.navPage = navReducer(this._state.navPage, action);
+        this._callSubscriber(this._state);
 
-        } else if (action.type === UPDATE_NEW_POST_TEXT) {
-            this._state.profilePage.newPostText = action.newText;
-            this._callSubscriber(store.getState());
-
-        } else if (action.type === ADD_NEW_MESSAGE) {
-            let newMessage = {
-                id: 6,
-                message: this._state.dialogsPage.newMessageTextData,
-                addresserYou: false
-            };
-            this._state.dialogsPage.messagesData.push(newMessage);
-            this._state.dialogsPage.newMessageTextData = '';
-            this._callSubscriber(store.getState());
-
-        } else if (action.type == UPDATE_NEW_MESSAGE_TEXT) {
-            this._state.dialogsPage.newMessageTextData = action.newMessageText;
-            this._callSubscriber(store.getState());
-        }
     }
 
 }
 
-
-export const addPostActionCreator = () => ({
-    type: ADD_POST
-});
-
-export const updateNewPostTextActionCreator = (text) => ({
-    type: UPDATE_NEW_POST_TEXT,
-    newText: text
-});
-
-export const addNewMessageActionCreator = () => ({
-    type: ADD_NEW_MESSAGE
-});
-
-export const updateNewMessageTextActionCreator = (text) => ({
-    type: UPDATE_NEW_MESSAGE_TEXT,
-    newMessageText: text
-});
 
 
 
