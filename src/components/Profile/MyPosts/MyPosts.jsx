@@ -8,16 +8,16 @@ import { addPostActionCreator, updateNewPostTextActionCreator } from './../../..
 
 const MyPosts = (props) => {
 
-    let postsElement = props.state.profilePage.postsData.map(postEl => <Post likes={postEl.likes} message={postEl.message} />)
+    let postsElement = props.postsData.map(postEl => <Post likes={postEl.likes} message={postEl.message} />)
     let newPostElement = React.createRef();
 
-    let addPost = () => {
-        props.dispatch(addPostActionCreator());
+    let onAddPost = () => {
+        props.addPost();
     };
 
     let onPostChange = () => {
         let text = newPostElement.current.value;
-        props.dispatch(updateNewPostTextActionCreator(text));
+        props.updateNewPostText(text);
     };
 
     return (
@@ -26,10 +26,10 @@ const MyPosts = (props) => {
             <div>
                 <div>
                     <textarea onChange={onPostChange} ref={newPostElement}
-                        value={props.state.profilePage.newPostText} />
+                        value={props.newPostText} />
                 </div>
                 <div>
-                    <button onClick={addPost}>add post</button>
+                    <button onClick={onAddPost}>add post</button>
                 </div>
             </div>
             {postsElement}
