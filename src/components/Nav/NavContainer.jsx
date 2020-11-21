@@ -1,22 +1,23 @@
 import React from 'react';
-import StoreContext from './../../StoreContext';
+import { connect } from 'react-redux';
 import Nav from './Nav';
 
 
-const NavContainer = (props) => {
 
-    return (
-        <StoreContext.Consumer>
-            {
-                (store) => {
-                 
-                    return <Nav navPage={store.getState().navPage} />
-                }
-            }
 
-        </StoreContext.Consumer>
-    );
+let mapStateToProps = (state) => {
+    return {
+        navPage: state.navPage
+    }
 }
+
+let mapDispatchToProps = (dispatch) => {
+    return {
+
+    }
+}
+
+const NavContainer = connect(mapStateToProps, mapDispatchToProps) (Nav);
 
 export default NavContainer;
 
