@@ -4,10 +4,9 @@ import s from './Nav.module.css';
 import NavFriends from './Friends/NavFriends';
 
 const Nav = (props) => {
-    // debugger
-    // console.log(props)
+     // console.log(props)
     let navFriend =
-        props.state.navPage.navFriendsData.map(navFriendEl =>
+        props.navPage.navFriendsData.map(navFriendEl =>
             <NavFriends imgSrc={navFriendEl.imgSrc} name={navFriendEl.name} />);
 
     return (

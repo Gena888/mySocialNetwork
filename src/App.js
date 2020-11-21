@@ -8,22 +8,21 @@ import Music from './components/Music/Music';
 import Settings from './components/Settings/Settings';
 import { Route } from 'react-router-dom';
 import DialogsContainer from './components/Dialogs/DialogsContainer';
+import NavContainer from './components/Nav/NavContainer';
 
 
 
 
 const App = (props) => {
-// debugger;
+  // debugger;
   return (
     <div className="app-wrapper">
 
       <Header />
-      <Nav state={props.state} />
-          <div className='app-wrapper-content'>
-        <Route path='/Profile'
-          render={() => <Profile state={props.state} dispatch={props.dispatch} store={props.store}/>} />
-        <Route path='/Dialogs'
-          render={() => <DialogsContainer store={props.store}/>} />
+      <NavContainer />
+      <div className='app-wrapper-content'>
+        <Route path='/Profile' render={() => <Profile />} />
+        <Route path='/Dialogs' render={() => <DialogsContainer />} />
         <Route path='/News' render={() => <News />} />
         <Route path='/Music' render={() => <Music />} />
         <Route path='/Settings' render={() => <Settings />} />
