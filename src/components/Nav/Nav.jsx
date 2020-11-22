@@ -7,7 +7,7 @@ const Nav = (props) => {
      // console.log(props)
     let navFriend =
         props.navPage.navFriendsData.map(navFriendEl =>
-            <NavFriends imgSrc={navFriendEl.imgSrc} name={navFriendEl.name} />);
+            <NavFriends key={navFriendEl.id} imgSrc={navFriendEl.imgSrc} name={navFriendEl.name} />);
 
     return (
         <nav className={s.nav}>
