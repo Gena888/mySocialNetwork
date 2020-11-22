@@ -3,14 +3,14 @@ import { addPostActionCreator, updateNewPostTextActionCreator } from './../../..
 import MyPosts from './MyPosts';
 
 
-let mapStateToProps = (state) => {
+const mapStateToProps = (state) => {
     return {
         postsData: state.profilePage.postsData,
         newPostText: state.profilePage.newPostText
     }
 }
 
-let mapDispatchToProps = (dispatch) => {
+const mapDispatchToProps = (dispatch) => {
     return {
         updateNewPostText: (text) => {
             dispatch(updateNewPostTextActionCreator(text));

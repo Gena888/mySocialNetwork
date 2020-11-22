@@ -8,29 +8,16 @@ import { BrowserRouter } from 'react-router-dom';
 import { Provider } from 'react-redux';
 
 
-let reReanderEntireTree = (state) => {
-  // debugger
-
-  ReactDOM.render(
-    <React.StrictMode>
-      <BrowserRouter>
-        <Provider store={store}>
-          <App />
-        </Provider>
-      </BrowserRouter>
-    </React.StrictMode>,
-    document.getElementById('root')
-  );
-}
-
-
-reReanderEntireTree(store.getState());
-
-
-store.subscribe(() => {
-  let state = store.getState();
-  reReanderEntireTree(state);
-});
+ReactDOM.render(
+  <React.StrictMode>
+    <BrowserRouter>
+      <Provider store={store}>
+        <App />
+      </Provider>
+    </BrowserRouter>
+  </React.StrictMode>,
+  document.getElementById('root')
+);
 
 
 
