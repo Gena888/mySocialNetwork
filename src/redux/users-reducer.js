@@ -41,10 +41,12 @@ const usersReducer = (state = inilialState, action) => {
                 })
             }
         case SET_USERS: {
+            debugger
+
             return {
                 ...state,
                 usersData: [...state.usersData, ...action.users]
-
+                
             }
         }
         default:
