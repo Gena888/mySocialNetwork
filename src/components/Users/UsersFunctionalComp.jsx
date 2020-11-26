@@ -1,32 +1,31 @@
-import * as axios from 'axios';
 import React from 'react';
 import s from './Users.module.css';
 import userPhoto from '../../imagas/no-avatar.png'
 
 
-const Users = (props) => {
+let UsersFunctionalComp = (props) => {
 
-
-
-    let getUsers = () => {
-
-        if (props.usersData.length === 0) {
-            debugger
-
-            axios.get('https://social-network.samuraijs.com/api/1.0/users')
-                .then(response => {
-                    debugger;
-                    props.setUsers(response.data.items)
-                });
-        }
-
+    let pagesCount =
+        Math.ceil(props.totalUsersCount / props.pageSize);
+    let pages = [];
+    for (let i = 1; i <= pagesCount; i++) {
+        pages.push(i)
     }
-
 
 
     return (
         <div>
-            <button onClick={getUsers} >getUsers</button>
+            <div>
+                {pages.map(p => {
+                    return <span className=
+                        {props.currentPage === p ? s.selectedPage : s.nonSelectedPage}
+                        onClick={() => { props.onPageChanged(p) }} >
+                        {p}
+                    </span>
+                }
+                )}
+
+            </div>
             {props.usersData.map((u) => <div key={u.id}>
                 <span>
                     <div>
@@ -54,6 +53,8 @@ const Users = (props) => {
             }
         </div>
     )
-};
+}
 
-export default Users;
+
+
+export default UsersFunctionalComp;
