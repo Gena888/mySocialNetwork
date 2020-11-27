@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import React from 'react';
-import { followAC, unFollowAC, setUsersAC, setCurrentPageAC, setTotalUsersCountAC, setToggleFetchingAC } from './../../redux/users-reducer';
+import { follow, unFollow, setUsers, setCurrentPage, setTotalUsersCount, setToggleFetching } from './../../redux/users-reducer';
 import * as axios from 'axios';
 import UsersFunctionalComp from './UsersFunctionalComp';
 import Preloader from '../Common/Preloader/Preloader';
@@ -15,21 +15,21 @@ class UsersContainer extends React.Component {
     }
 
     componentDidMount = () => {
-        this.props.toggleFetching(true);
+        this.props.setToggleFetching(true);
         axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${this.props.currentPage}&count=${this.props.pageSize}`)
             .then(response => {
-                this.props.toggleFetching(false);
+                this.props.setToggleFetching(false);
                 this.props.setUsers(response.data.items);
                 this.props.setTotalUsersCount(response.data.totalCount);
             });
     }
 
     onPageChanged = (pageNumber) => {
-        this.props.toggleFetching(true);
+        this.props.setToggleFetching(true);
         this.props.setCurrentPage(pageNumber);
         axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${pageNumber}&count=${this.props.pageSize}`)
             .then(response => {
-                this.props.toggleFetching(false);
+                this.props.setToggleFetching(false);
                 this.props.setUsers(response.data.items);
             });
     }
@@ -68,28 +68,11 @@ const mapStateToProps = (state) => {
     }
 }
 
-const mapDispatchToProps = (dispatch) => {
-    return {
-        follow: (userId) => {
-            dispatch(followAC(userId))
-        },
-        unFollow: (userId) => {
-            dispatch(unFollowAC(userId))
-        },
-        setUsers: (users) => {
-            dispatch(setUsersAC(users));
-        },
-        setCurrentPage: (page) => {
-            dispatch(setCurrentPageAC(page));
-        },
-        setTotalUsersCount: (totalCount) => {
-            dispatch(setTotalUsersCountAC(totalCount));
-        },
-        toggleFetching: (isFetching) => {
-            dispatch(setToggleFetchingAC(isFetching));
-        }
-    }
-}
 
 
-export default connect(mapStateToProps, mapDispatchToProps)(UsersContainer);
+
+export default connect(mapStateToProps, 
+    {follow, unFollow, setUsers, setCurrentPage, setTotalUsersCount, setToggleFetching})(UsersContainer);
+
+    // теперь не передаем mapDispatchToProps В коннект, вместо него просто передаём
+    // обьект со свойствами: action: action записывая просто как action. 
