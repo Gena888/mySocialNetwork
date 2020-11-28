@@ -1,9 +1,10 @@
 import React from 'react';
 import s from './Users.module.css';
 import userPhoto from '../../imagas/no-avatar.png'
+import { NavLink } from 'react-router-dom';
 
 
-let UsersFunctionalComp = (props) => {
+let Users = (props) => {
 
     let pagesCount =
         Math.ceil(props.totalUsersCount / props.pageSize);
@@ -29,9 +30,10 @@ let UsersFunctionalComp = (props) => {
             {props.usersData.map((u) => <div key={u.id}>
                 <span>
                     <div>
-                        <img className={s.userPhoto}
+                        <NavLink to={'/Profile/' + u.id}> <img className={s.userPhoto}
                             src={u.photos.small != null ? u.photos.small : userPhoto}
                             alt="" />
+                        </NavLink>
                     </div>
                     <div>
                         {u.followed
@@ -57,4 +59,4 @@ let UsersFunctionalComp = (props) => {
 
 
 
-export default UsersFunctionalComp;
+export default Users;

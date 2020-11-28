@@ -2,7 +2,7 @@ import { connect } from 'react-redux';
 import React from 'react';
 import { follow, unFollow, setUsers, setCurrentPage, setTotalUsersCount, setToggleFetching } from './../../redux/users-reducer';
 import * as axios from 'axios';
-import UsersFunctionalComp from './UsersFunctionalComp';
+import Users from './Users';
 import Preloader from '../Common/Preloader/Preloader';
 
 
@@ -40,7 +40,7 @@ class UsersContainer extends React.Component {
 
                 {this.props.isFetching ? <Preloader/> : null}
 
-                <UsersFunctionalComp
+                <Users
                     totalUsersCount={this.props.totalUsersCount}
                     pageSize={this.props.pageSize}
                     currentPage={this.props.currentPage}
@@ -74,5 +74,6 @@ const mapStateToProps = (state) => {
 export default connect(mapStateToProps, 
     {follow, unFollow, setUsers, setCurrentPage, setTotalUsersCount, setToggleFetching})(UsersContainer);
 
-    // теперь не передаем mapDispatchToProps В коннект, вместо него просто передаём
+    // теперь не передаем mapDispatchToProps В коннект,
+    // вместо него просто передаём
     // обьект со свойствами: action: action записывая просто как action. 
