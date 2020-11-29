@@ -2,7 +2,7 @@ import React from 'react';
 import s from './ProfileInfo.module.css';
 import Preloader from './../../Common/Preloader/Preloader';
 
-//!! урок 59 вытащить из профайла остальную инфу, сформировать её как то на странице. 
+
 
 const ProfileInfo = (props) => {
     if (!props.profile) {
