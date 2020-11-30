@@ -10,7 +10,7 @@ class ProfileContainer extends React.Component {
 
     componentDidMount() {
         let userId = this.props.match.params.userId;
-        debugger
+        // debugger
         if (!userId) {
             userId = 2;
         }
@@ -43,3 +43,4 @@ let WithUrlDataContainerComponent = withRouter(ProfileContainer);
 
 export default connect(mapStateToProps,
     {setUserProfile})(WithUrlDataContainerComponent);
+    
