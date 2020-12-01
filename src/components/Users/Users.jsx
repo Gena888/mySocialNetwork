@@ -2,6 +2,8 @@ import React from 'react';
 import s from './Users.module.css';
 import userPhoto from '../../imagas/no-avatar.png'
 import { NavLink } from 'react-router-dom';
+import * as axios from 'axios';
+
 
 
 let Users = (props) => {
@@ -12,6 +14,7 @@ let Users = (props) => {
     for (let i = 1; i <= pagesCount; i++) {
         pages.push(i)
     }
+
 
 
     return (
@@ -37,8 +40,42 @@ let Users = (props) => {
                     </div>
                     <div>
                         {u.followed
-                            ? <button onClick={() => { props.unFollow(u.id) }} >unFollow</button>
-                            : <button onClick={() => { props.follow(u.id) }} >Follow</button>}
+                            ? <button onClick={() => {
+
+                                axios.delete(`https://social-network.samuraijs.com/api/1.0/follow/${u.id}`, {
+                                    withCredentials: true,
+                                    headers: {
+                                        'API-KEY': '9612377a-0b39-4432-abc2-9856cf3bb343'
+                                    } 
+                                })
+                                    .then(response => {
+                                        if (response.data.resultCode == 0) {
+                                            props.unFollow(u.id);
+                                        }
+                                    });
+
+
+                            }} >unFollow</button>
+                            : <button onClick={() => {
+
+                                axios.post(`https://social-network.samuraijs.com/api/1.0/follow/${u.id}`, {}, {
+                                    withCredentials: true,
+                                    headers: {
+                                        'API-KEY': '9612377a-0b39-4432-abc2-9856cf3bb343'
+                                    } 
+                                })
+                                    .then(response => {
+                                        if (response.data.resultCode == 0) {
+                                            props.follow(u.id);
+                                        }
+                                    });
+
+                               
+
+
+                            }} >Follow</button>}
+
+
                     </div>
                 </span>
                 <span>

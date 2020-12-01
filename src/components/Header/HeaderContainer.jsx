@@ -20,7 +20,7 @@ class HeaderContainer extends React.Component {
 
                     axios.get(`https://social-network.samuraijs.com/api/1.0/profile/` + response.data.data.id)
                         .then(response => {
-                            debugger;
+                            // debugger;
                             // this.props.setToggleFetching(false);
                             this.props.setUserProfileData(response.data);
                         });

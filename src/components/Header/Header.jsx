@@ -15,7 +15,7 @@ const Header = (props) => {
         }
     }
 
-    debugger
+    // debugger
     return (
 
         <header className={s.header}>

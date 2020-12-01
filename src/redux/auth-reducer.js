@@ -21,7 +21,7 @@ const authReducer = (state = inilialState, action) => {
                 isAuth: true
             }
         case SET_USER_PROFILE:
-            debugger
+            // debugger
             return {
                 ...state, 
                 ...action.profileUserData
