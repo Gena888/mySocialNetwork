@@ -1,4 +1,5 @@
 const SET_USER_DATA = 'SET_USER_DATA';
+const SET_USER_PROFILE = 'SET_USER_PROFILE'
 
 
 let inilialState = {
@@ -19,10 +20,12 @@ const authReducer = (state = inilialState, action) => {
                 ...action.data,
                 isAuth: true
             }
-
-
-
-
+        case SET_USER_PROFILE:
+            debugger
+            return {
+                ...state, 
+                ...action.profileUserData
+            }
 
 
         default:
@@ -33,6 +36,8 @@ const authReducer = (state = inilialState, action) => {
 
 export const setAuthUserData = (userId, email, login) =>
     ({ type: SET_USER_DATA, data: { userId, email, login } });
+
+export const setUserProfileData = (profileUserData) => ({ type: SET_USER_PROFILE, profileUserData })
 
 // export const setToggleFetching = (isFetching) => ({ type: TOGGLE_IS_FETCHING, isFetching });
 
