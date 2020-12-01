@@ -16,6 +16,7 @@ let inilialState = {
     followingInProgress: []
 }
 
+
 const usersReducer = (state = inilialState, action) => {
 
     switch (action.type) {
