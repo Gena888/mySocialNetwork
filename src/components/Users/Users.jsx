@@ -39,30 +39,36 @@ let Users = (props) => {
                     </div>
                     <div>
                         {u.followed
-                            ? <button onClick={() => {
-
-                                API.unfollowUser(u.id)
-                                    .then(data => {
-                                        if (data.resultCode === 0) {
-                                            props.unFollow(u.id);
-                                        }
-                                    });
-
-
-                            }} >unFollow</button>
-                            : <button onClick={() => {
-
-                               API.followUser(u.id)
-                                    .then(data => {
-                                        if (data.resultCode === 0) {
-                                            props.follow(u.id);
-                                        }
-                                    });
+                            ? <button
+                                disabled={props.followingInProgress.some(id => id === u.id)}
+                                onClick={() => {
+                                    props.toggleFollowingIsFetching(true, u.id)
+                                    API.unfollowUser(u.id)
+                                        .then(data => {
+                                            if (data.resultCode === 0) {
+                                                props.unFollow(u.id);
+                                            }
+                                            props.toggleFollowingIsFetching(false, u.id);
+                                        });
 
 
+                                }} >unFollow</button>
+                            : <button
+                                disabled={props.followingInProgress.some(id => id === u.id)}
+                                onClick={() => {
+                                    props.toggleFollowingIsFetching(true, u.id)
+                                    API.followUser(u.id)
+                                        .then(data => {
+                                            if (data.resultCode === 0) {
+                                                props.follow(u.id);
+                                            }
+                                            props.toggleFollowingIsFetching(false, u.id);
+                                        });
 
 
-                            }} >Follow</button>}
+
+
+                                }} >Follow</button>}
 
 
                     </div>
