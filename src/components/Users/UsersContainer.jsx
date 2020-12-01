@@ -4,6 +4,7 @@ import { follow, unFollow, setUsers, setCurrentPage, setTotalUsersCount, setTogg
 import * as axios from 'axios';
 import Users from './Users';
 import Preloader from '../Common/Preloader/Preloader';
+import { API } from '../../api/api';
 
 
 // классовая компанента выполняющая ajax запросы и рендерящая функциональную
@@ -16,25 +17,21 @@ class UsersContainer extends React.Component {
 
     componentDidMount = () => {
         this.props.setToggleFetching(true);
-        axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${this.props.currentPage}&count=${this.props.pageSize} `, {
-            withCredentials: true
-        })
-            .then(response => {
+        API.getUsers(this.props.currentPage, this.props.pageSize)
+                .then(data => {
                 this.props.setToggleFetching(false);
-                this.props.setUsers(response.data.items);
-                this.props.setTotalUsersCount(response.data.totalCount);
+                this.props.setUsers(data.items);
+                this.props.setTotalUsersCount(data.totalCount);
             });
     }
 
     onPageChanged = (pageNumber) => {
         this.props.setToggleFetching(true);
         this.props.setCurrentPage(pageNumber);
-        axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${pageNumber}&count=${this.props.pageSize}`, {
-            withCredentials: true
-        })
-            .then(response => {
+        API.getUsers(pageNumber, this.props.pageSize)
+            .then(data => {
                 this.props.setToggleFetching(false);
-                this.props.setUsers(response.data.items);
+                this.props.setUsers(data.items);
             });
     }
 
