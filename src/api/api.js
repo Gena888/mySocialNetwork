@@ -31,8 +31,33 @@ export const API = {
 
     getUsers2(pageNumber, pageSize) {
         return instanse.get(`users?page=${pageNumber}&count=${pageSize}`)
-        .then(response => response.data)
+            .then(response => response.data)
+    },
+
+    authMe(setAuthUserData, setUserProfileData) {
+        return instanse.get('auth/me')
+            .then(response => {
+                if (response.data.resultCode === 0) {
+                    let { id, login, email } = response.data.data;
+                    setAuthUserData(id, login, email);
+                    
+                    this.getProfileData(response.data.data.id, setUserProfileData)
+                }
+
+            });
+
+    },
+
+    getProfileData(profileId, setUserProfileData) {
+        return instanse.get('profile/' + profileId)
+            .then(response => {
+                setUserProfileData(response.data);
+            });
     }
+
+    
+
+
 
 
 
