@@ -34,7 +34,7 @@ export const API = {
             .then(response => response.data)
     },
 
-    authMe(setAuthUserData, setUserProfileData) {
+    authMe() {
         return instanse.get('auth/me')
         .then(response => response.data)
 
