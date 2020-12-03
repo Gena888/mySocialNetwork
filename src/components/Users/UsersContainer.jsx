@@ -1,13 +1,9 @@
 import { connect } from 'react-redux';
 import React from 'react';
-import { follow, unFollow, setUsers, setCurrentPage, setTotalUsersCount, setToggleFetching, toggleFollowingIsFetching } from './../../redux/users-reducer';
+import {setCurrentPage, getUsersThunk, unfollowThunk, followThunk } from './../../redux/users-reducer';
 import Users from './Users';
 import Preloader from '../Common/Preloader/Preloader';
-import { API } from '../../api/api';
 
-
-// классовая компанента выполняющая ajax запросы и рендерящая функциональную
-// компаненту, передавая в её пропсы необходимую инфу.
 
 class UsersContainer extends React.Component {
     constructor(props) {
@@ -15,23 +11,12 @@ class UsersContainer extends React.Component {
     }
 
     componentDidMount = () => {
-        this.props.setToggleFetching(true);
-        API.getUsers(this.props.currentPage, this.props.pageSize)
-                .then(data => {
-                this.props.setToggleFetching(false);
-                this.props.setUsers(data.items);
-                this.props.setTotalUsersCount(data.totalCount);
-            });
+        this.props.getUsersThunk(this.props.currentPage, this.props.pageSize)
     }
 
     onPageChanged = (pageNumber) => {
-        this.props.setToggleFetching(true);
         this.props.setCurrentPage(pageNumber);
-        API.getUsers(pageNumber, this.props.pageSize)
-            .then(data => {
-                this.props.setToggleFetching(false);
-                this.props.setUsers(data.items);
-            });
+        this.props.getUsersThunk(pageNumber, this.props.pageSize)
     }
 
     render = () => {
@@ -46,19 +31,14 @@ class UsersContainer extends React.Component {
                     currentPage={this.props.currentPage}
                     onPageChanged={this.onPageChanged}
                     usersData={this.props.usersData}
-                    follow={this.props.follow}
-                    unFollow={this.props.unFollow}
-                    toggleFollowingIsFetching={this.props.toggleFollowingIsFetching}
                     followingInProgress={this.props.followingInProgress}
-                // ifFetching={this.props.usersPage.isFetching}
+                    unfollowThunk={this.props.unfollowThunk}
+                    followThunk={this.props.followThunk}
+
                 />
             </>)
     }
 }
-
-// контейнерная вторая компанента которая получается в результате
-// оборачивания первой компаненты(connect). принимает данные у state 
-// и передаёт их в props API компаненте по средствам CONNECT-а 
 
 const mapStateToProps = (state) => {
     return {
@@ -67,15 +47,11 @@ const mapStateToProps = (state) => {
         totalUsersCount: state.usersPage.totalUsersCount,
         currentPage: state.usersPage.currentPage,
         isFetching: state.usersPage.isFetching,
-        followingInProgress: state.usersPage.followingInProgress
+        followingInProgress: state.usersPage.followingInProgress,
+
     }
 }
 
 
-
 export default connect(mapStateToProps,
-    { follow, unFollow, setUsers, setCurrentPage, setTotalUsersCount, setToggleFetching, toggleFollowingIsFetching })(UsersContainer);
-
-    // теперь не передаем mapDispatchToProps В коннект,
-    // вместо него просто передаём
-    // обьект со свойствами: action: action записывая просто как action. 
+    { setCurrentPage, getUsersThunk, unfollowThunk, followThunk })(UsersContainer);
