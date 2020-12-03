@@ -36,26 +36,17 @@ export const API = {
 
     authMe(setAuthUserData, setUserProfileData) {
         return instanse.get('auth/me')
-            .then(response => {
-                if (response.data.resultCode === 0) {
-                    let { id, login, email } = response.data.data;
-                    setAuthUserData(id, login, email);
-                    
-                    this.getProfileData(response.data.data.id, setUserProfileData)
-                }
-
-            });
+        .then(response => response.data)
 
     },
 
-    getProfileData(profileId, setUserProfileData) {
+    getProfileData(profileId) {
         return instanse.get('profile/' + profileId)
-            .then(response => {
-                setUserProfileData(response.data);
-            });
+            .then(response => response.data)
+
     }
 
-    
+
 
 
 

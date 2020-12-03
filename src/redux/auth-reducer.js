@@ -1,3 +1,5 @@
+import { API } from './../api/api';
+
 const SET_USER_DATA = 'SET_USER_DATA';
 const SET_USER_PROFILE = 'SET_USER_PROFILE'
 
@@ -23,7 +25,7 @@ const authReducer = (state = inilialState, action) => {
         case SET_USER_PROFILE:
             // debugger
             return {
-                ...state, 
+                ...state,
                 ...action.profileUserData
             }
 
@@ -39,6 +41,20 @@ export const setAuthUserData = (userId, email, login) =>
 
 export const setUserProfileData = (profileUserData) => ({ type: SET_USER_PROFILE, profileUserData })
 
-// export const setToggleFetching = (isFetching) => ({ type: TOGGLE_IS_FETCHING, isFetching });
+export const setUserDataThunk = () => (dispatch) => {
+    API.authMe()
+    .then(data => {
+        if (data.resultCode === 0) {
+            let { id, login, email } = data.data;
+            dispatch(setAuthUserData(id, login, email));
+
+            API.getProfileData(data.data.id)
+        }
+
+    });
+}
+
+// API.authMe(this.props.setAuthUserData, this.props.setUserProfileData)
+
 
 export default authReducer;
