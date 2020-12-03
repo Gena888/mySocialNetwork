@@ -1,14 +1,14 @@
 import React from 'react';
 import Header from './Header';
 import { connect } from 'react-redux';
-import { setUserDataThunk } from './../../redux/auth-reducer';
+import { getUserDataThunk } from './../../redux/auth-reducer';
 
 
 
 class HeaderContainer extends React.Component {
 
     componentDidMount() {
-        this.props.setUserDataThunk()
+        this.props.getUserDataThunk()
     }
 
     render() {
@@ -26,4 +26,4 @@ let mapStateToProps = (state) => ({
 })
 
 export default connect(mapStateToProps,
-    { setUserDataThunk })(HeaderContainer);
+    { getUserDataThunk })(HeaderContainer);

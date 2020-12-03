@@ -4,19 +4,18 @@ import DialogItem from './DialogItem/DialogItem';
 import Message from './Message/Message';
 
 
+
 const Dialogs = (props) => {
 
 
     let addNewMessage = () => {
         props.sendMessage();
-        // props.dispatch(addNewMessageActionCreator());
     };
 
     let onMessageTextChange = (event) => {
         let text = event.target.value;
         props.uppdateNewMessageText(text);
-       
-        // props.dispatch(updateNewMessageTextActionCreator(newMessageText));
+
     };
 
     let dialogsElements =
@@ -26,6 +25,9 @@ const Dialogs = (props) => {
         props.messagesData.map((messageEl) =>
             <Message key={messageEl.id} message={messageEl.message} addresserYou={messageEl.addresserYou} />)
 
+           
+
+
     return (
         <div className={s.dialogs}>
 
@@ -34,7 +36,7 @@ const Dialogs = (props) => {
             </div>
             <div className={s.messages}>
                 {messagesElements}
-                <textarea  onChange={onMessageTextChange}
+                <textarea onChange={onMessageTextChange}
                     value={props.newMessageTextData}></textarea>
                 <div>
                     <button onClick={addNewMessage}>получи своё сообщение</button>

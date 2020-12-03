@@ -5,6 +5,9 @@ import Preloader from './../../Common/Preloader/Preloader';
 
 
 const ProfileInfo = (props) => {
+    // debugger
+   
+       
     if (!props.profile) {
         return <Preloader />
     }

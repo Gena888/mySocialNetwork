@@ -41,7 +41,7 @@ export const setAuthUserData = (userId, email, login) =>
 
 export const setUserProfileData = (profileUserData) => ({ type: SET_USER_PROFILE, profileUserData })
 
-export const setUserDataThunk = () => (dispatch) => {
+export const getUserDataThunk = () => (dispatch) => {
     API.authMe()
     .then(data => {
         if (data.resultCode === 0) {
