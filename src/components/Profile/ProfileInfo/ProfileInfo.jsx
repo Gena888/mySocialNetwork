@@ -6,11 +6,12 @@ import ProfileStatus from './ProfileStatus'
 
 const ProfileInfo = (props) => {
     // debugger
-   
-       
+
+
     if (!props.profile) {
         return <Preloader />
     }
+    // debugger
 
     return (
         <div>
@@ -28,7 +29,7 @@ const ProfileInfo = (props) => {
                 </div>
                 <img src={props.profile.photos.large} alt="" />
 
-                <ProfileStatus status={'YOYOYO'} />
+                <ProfileStatus status={props.status} updateStatusThunk={props.updateStatusThunk} />
 
                 <div> abot me:
                     <div>{props.profile.aboutMe}</div>

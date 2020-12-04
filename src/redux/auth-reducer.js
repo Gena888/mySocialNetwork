@@ -1,4 +1,4 @@
-import { API } from './../api/api';
+import { profileAPI, userAPI } from './../api/api';
 
 const SET_USER_DATA = 'SET_USER_DATA';
 const SET_USER_PROFILE = 'SET_USER_PROFILE'
@@ -42,19 +42,19 @@ export const setAuthUserData = (userId, email, login) =>
 export const setUserProfileData = (profileUserData) => ({ type: SET_USER_PROFILE, profileUserData })
 
 export const getUserDataThunk = () => (dispatch) => {
-    API.authMe()
+    userAPI.authMe()
     .then(data => {
         if (data.resultCode === 0) {
             let { id, login, email } = data.data;
             dispatch(setAuthUserData(id, login, email));
 
-            API.getProfileData(data.data.id)
+            profileAPI.getProfileData(data.data.id)
         }
 
     });
 }
 
-// API.authMe(this.props.setAuthUserData, this.props.setUserProfileData)
+// userAPI.authMe(this.props.setAuthUserData, this.props.setUserProfileData)
 
 
 export default authReducer;

@@ -12,7 +12,7 @@ const instanse = axios.create({
 
 
 
-export const API = {
+export const userAPI = {
     unfollowUser(id) {
         return instanse.delete(`follow/${id}`)
             .then(response => response.data)
@@ -36,22 +36,26 @@ export const API = {
 
     authMe() {
         return instanse.get('auth/me')
-        .then(response => response.data)
-
-    },
-
-    getProfileData(profileId) {
-        return instanse.get('profile/' + profileId)
             .then(response => response.data)
 
     }
 
+}
 
+export const profileAPI = {
+    getProfileData(profileId) {
+        return instanse.get('profile/' + profileId)
+            .then(response => response.data)
+    },
 
+    getStatus(userId) {
+        return instanse.get('profile/status/' + userId)
+            .then(response => response.data)
+    },
 
-
-
-
-
+    updateStatus(status) {
+        return instanse.put('profile/status/', {status: status})
+            .then(response => response.data)
+    }
 
 }
