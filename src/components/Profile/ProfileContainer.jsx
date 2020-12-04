@@ -13,7 +13,6 @@ class ProfileContainer extends React.Component {
 
     componentDidMount() {
         let userId = this.props.match.params.userId;
-        // debugger
         if (!userId) {
             userId = 12852;
         }
@@ -34,7 +33,6 @@ class ProfileContainer extends React.Component {
         )
     }
 }
-debugger
 let mapStateToProps = (state) => ({
     profile: state.profilePage.profile,
     status: state.profilePage.status

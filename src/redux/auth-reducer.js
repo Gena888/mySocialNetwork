@@ -1,4 +1,4 @@
-import { profileAPI, userAPI } from './../api/api';
+import { profileAPI, userAPI, loginAPI } from './../api/api';
 
 const SET_USER_DATA = 'SET_USER_DATA';
 const SET_USER_PROFILE = 'SET_USER_PROFILE'
@@ -9,7 +9,8 @@ let inilialState = {
     email: null,
     login: null,
     isAuth: false,
-    isFetching: true
+    isFetching: true,
+    rememberMe: false
 };
 
 const authReducer = (state = inilialState, action) => {
@@ -43,16 +44,31 @@ export const setUserProfileData = (profileUserData) => ({ type: SET_USER_PROFILE
 
 export const getUserDataThunk = () => (dispatch) => {
     userAPI.authMe()
-    .then(data => {
-        if (data.resultCode === 0) {
-            let { id, login, email } = data.data;
-            dispatch(setAuthUserData(id, login, email));
+        .then(data => {
+            if (data.resultCode === 0) {
+                let { id, login, email } = data.data;
+                dispatch(setAuthUserData(id, login, email));
 
-            profileAPI.getProfileData(data.data.id)
-        }
+                profileAPI.getProfileData(data.data.id)
+            }
 
-    });
+        });
 }
+
+export const postLoginDataThunk = (formData) => (dispatch) => {
+    userAPI.authMe()
+        .then(data => {
+            if (data.resultCode !== 0) {
+                // let { email, password, rememberMe } = formData;
+                let email = formData.email;
+                let password = formData.password;
+                let rememberMe = formData.rememberMe;
+                loginAPI.postLoginData(email, password, rememberMe);
+            }
+        })
+
+}
+
 
 // userAPI.authMe(this.props.setAuthUserData, this.props.setUserProfileData)
 
