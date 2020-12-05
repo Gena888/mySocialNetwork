@@ -36,8 +36,7 @@ const LoginReduxForm = reduxForm({
 const Login = (props) => {
 
     const onSubmit = (formData) => {
-        // console.log(formData)
-        postLoginDataThunk(formData);
+        console.log(formData)
 
     }
 
@@ -49,12 +48,4 @@ const Login = (props) => {
     )
 }
 
-// export default Login;
-
-let mapStateToProps = (state) => ({
-
-})
-
-
-
-export default connect(mapStateToProps, {postLoginDataThunk})(Login)
+export default Login;

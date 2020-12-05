@@ -55,19 +55,6 @@ export const getUserDataThunk = () => (dispatch) => {
         });
 }
 
-export const postLoginDataThunk = (formData) => (dispatch) => {
-    userAPI.authMe()
-        .then(data => {
-            if (data.resultCode !== 0) {
-                // let { email, password, rememberMe } = formData;
-                let email = formData.email;
-                let password = formData.password;
-                let rememberMe = formData.rememberMe;
-                loginAPI.postLoginData(email, password, rememberMe);
-            }
-        })
-
-}
 
 
 // userAPI.authMe(this.props.setAuthUserData, this.props.setUserProfileData)

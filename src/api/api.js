@@ -61,14 +61,3 @@ export const profileAPI = {
 }
 
 
-export const loginAPI = {
-    postLoginData(email, password, rememberMe) {
-        return instanse.post('/auth/login/', {
-            email: email,
-            password: password,
-            rememberMe: rememberMe
-        })
-        .then(response => response.data)
-    }
-
-}
