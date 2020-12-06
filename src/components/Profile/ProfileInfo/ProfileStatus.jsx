@@ -1,6 +1,5 @@
 import React from 'react';
-import s from './ProfileInfo.module.css';
-import { updateStatusThunk } from './../../../redux/profile-reducer';
+
 
 
 class ProfileStatus extends React.Component {
