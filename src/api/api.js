@@ -32,12 +32,6 @@ export const userAPI = {
     getUsers2(pageNumber, pageSize) {
         return instanse.get(`users?page=${pageNumber}&count=${pageSize}`)
             .then(response => response.data)
-    },
-
-    authMe() {
-        return instanse.get('auth/me')
-            .then(response => response.data)
-
     }
 
 }
@@ -55,6 +49,31 @@ export const profileAPI = {
 
     updateStatus(status) {
         return instanse.put('profile/status/', { status: status })
+            .then(response => response.data)
+    }
+
+}
+
+
+export const authAPI = {
+
+    me() {
+        return instanse.get('auth/me')
+            .then(response => response.data)
+
+    },
+
+    Login(email, password, rememberMe = false) {
+        return instanse.post('auth/login', {
+            email,
+            password,
+            rememberMe
+        })
+            .then(response => response.data)
+    },
+
+    Logout() {
+        return instanse.delete('auth/login')
             .then(response => response.data)
     }
 
