@@ -16,7 +16,7 @@ const LoginForm = (props) => {
             <div>
                 <Field validate={[required]} placeholder={'Password'} component={Input} name={'password'} />
             </div>
-            {props.passError &&  <span className={s.passError}>INCORRECT PASSWORD</span>}           
+            {props.error && <div className={s.formSummeryError}>{props.error}</div>}
             <div>
                 <Field component={Input} type="checkbox" name={'rememberMe'} /> remember me
         </div>
@@ -48,7 +48,7 @@ const Login = (props) => {
     return (
         <div>
             <h1>login</h1>
-            <LoginReduxForm onSubmit={onSubmit} passError={props.passError}/>
+            <LoginReduxForm onSubmit={onSubmit} passError={props.passError} />
         </div>
     )
 }

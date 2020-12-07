@@ -1,4 +1,6 @@
-import { profileAPI, authAPI } from './../api/api';
+import { stopSubmit } from 'redux-form';
+import { authAPI } from './../api/api';
+
 
 const SET_USER_DATA = 'SET_USER_DATA';
 const SET_USER_PROFILE = 'SET_USER_PROFILE'
@@ -11,8 +13,7 @@ let inilialState = {
     login: null,
     isAuth: false,
     isFetching: true,
-    rememberMe: false,
-    passError: false 
+    rememberMe: false
 };
 
 const authReducer = (state = inilialState, action) => {
@@ -30,11 +31,6 @@ const authReducer = (state = inilialState, action) => {
                 ...state,
                 ...action.profileUserData
             }
-        case PASS_ERROR:
-            return {
-                ...state,
-                passError: action.passError
-            }
 
 
         default:
@@ -43,8 +39,8 @@ const authReducer = (state = inilialState, action) => {
     }
 }
 
-export const setAuthUserData = (userId, email, login, isAuth, passError) =>
-    ({ type: SET_USER_DATA, payload: { userId, email, login, isAuth, passError } });
+export const setAuthUserData = (userId, email, login, isAuth) =>
+    ({ type: SET_USER_DATA, payload: { userId, email, login, isAuth } });
 
 export const setUserProfileData = (profileUserData) => ({ type: SET_USER_PROFILE, profileUserData })
 
@@ -57,7 +53,7 @@ export const getUserDataThunk = () => (dispatch) => {
         .then(data => {
             if (data.resultCode === 0) {
                 let { id, login, email } = data.data;
-                dispatch(setAuthUserData(id, login, email, true, false));
+                dispatch(setAuthUserData(id, login, email, true));
 
 
             }
@@ -72,11 +68,10 @@ export const LoginThunk = (email, password, rememberMe) => (dispatch) => {
         .then(data => {
             if (data.resultCode === 0) {
                 dispatch(getUserDataThunk())
-            } else if (data.resultCode === 1) {
-                dispatch(showPassError())
+            } else {
+                let message = data.messages.length > 0 ? data.messages[0] : 'Some error'
+                dispatch(stopSubmit('login', { _error: message}))
             }
-            // в противном случае resultCode = 1 - неверный пас, 
-            //dispatch(showPasswordMessage())??? это добавит в стэйт мессагу и если мессага - отображаем блок в jsx
 
         });
 }
@@ -94,7 +89,6 @@ export const LogoutThunk = () => (dispatch) => {
 }
 
 
-//authAPI.me()(this.props.setAuthUserData, this.props.setUserProfileData)
 
 
 export default authReducer;
