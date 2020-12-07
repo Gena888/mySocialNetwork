@@ -49,15 +49,13 @@ export const showPassError = () => ({ type: PASS_ERROR, passError: true })
 // thunks
 
 export const getUserDataThunk = () => (dispatch) => {
-    authAPI.me()
+    return authAPI.me()
         .then(data => {
             if (data.resultCode === 0) {
                 let { id, login, email } = data.data;
                 dispatch(setAuthUserData(id, login, email, true));
 
-
             }
-
         });
 }
 
@@ -70,7 +68,7 @@ export const LoginThunk = (email, password, rememberMe) => (dispatch) => {
                 dispatch(getUserDataThunk())
             } else {
                 let message = data.messages.length > 0 ? data.messages[0] : 'Some error'
-                dispatch(stopSubmit('login', { _error: message}))
+                dispatch(stopSubmit('login', { _error: message }))
             }
 
         });
