@@ -2,6 +2,7 @@ import { profileAPI, authAPI } from './../api/api';
 
 const SET_USER_DATA = 'SET_USER_DATA';
 const SET_USER_PROFILE = 'SET_USER_PROFILE'
+const PASS_ERROR = 'PASS_ERROR'
 
 
 let inilialState = {
@@ -10,7 +11,8 @@ let inilialState = {
     login: null,
     isAuth: false,
     isFetching: true,
-    rememberMe: false
+    rememberMe: false,
+    passError: false 
 };
 
 const authReducer = (state = inilialState, action) => {
@@ -28,6 +30,11 @@ const authReducer = (state = inilialState, action) => {
                 ...state,
                 ...action.profileUserData
             }
+        case PASS_ERROR:
+            return {
+                ...state,
+                passError: action.passError
+            }
 
 
         default:
@@ -36,11 +43,12 @@ const authReducer = (state = inilialState, action) => {
     }
 }
 
-export const setAuthUserData = (userId, email, login, isAuth) =>
-    ({ type: SET_USER_DATA, payload: { userId, email, login, isAuth } });
+export const setAuthUserData = (userId, email, login, isAuth, passError) =>
+    ({ type: SET_USER_DATA, payload: { userId, email, login, isAuth, passError } });
 
 export const setUserProfileData = (profileUserData) => ({ type: SET_USER_PROFILE, profileUserData })
 
+export const showPassError = () => ({ type: PASS_ERROR, passError: true })
 
 // thunks
 
@@ -49,7 +57,7 @@ export const getUserDataThunk = () => (dispatch) => {
         .then(data => {
             if (data.resultCode === 0) {
                 let { id, login, email } = data.data;
-                dispatch(setAuthUserData(id, login, email, true));
+                dispatch(setAuthUserData(id, login, email, true, false));
 
 
             }
@@ -64,12 +72,15 @@ export const LoginThunk = (email, password, rememberMe) => (dispatch) => {
         .then(data => {
             if (data.resultCode === 0) {
                 dispatch(getUserDataThunk())
-            } 
+            } else if (data.resultCode === 1) {
+                dispatch(showPassError())
+            }
             // в противном случае resultCode = 1 - неверный пас, 
             //dispatch(showPasswordMessage())??? это добавит в стэйт мессагу и если мессага - отображаем блок в jsx
 
         });
 }
+
 
 
 export const LogoutThunk = () => (dispatch) => {
