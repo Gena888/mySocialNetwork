@@ -3,8 +3,10 @@ import React from 'react';
 
 const Preloader = (props) => {
     return (
-
-        < img src={preloader} />
+        <div>
+            < img alt='preloader' src={preloader} />
+            <h1>LOADING, W8 PLZzz</h1>
+        </div>
 
     )
 }
