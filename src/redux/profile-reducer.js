@@ -41,9 +41,9 @@ const profileReducer = (state = initialState, action) => {
                 status: action.status
 
             }
-            case DELETE_POST: 
+        case DELETE_POST:
             return {
-                ...state, 
+                ...state,
                 postsData: state.postsData.filter(p => p.id != action.postId)
             }
 
@@ -79,30 +79,22 @@ export const setStatus = (status) => ({
 ///--
 
 
-export const getProfileDataThunk = (userId) => (dispatch) => {
-    profileAPI.getProfileData(userId)
-        .then(data => {
-            dispatch(setUserProfile(data));
-        });
-
+export const getProfileDataThunk = (userId) => async (dispatch) => {
+    let data = await profileAPI.getProfileData(userId)
+    dispatch(setUserProfile(data));
 }
 
-export const getStatusThunk = (userId) => (dispatch => {
-    profileAPI.getStatus(userId)
-        .then(data => {
-            dispatch(setStatus(data));
-        });
-})
+export const getStatusThunk = (userId) => async (dispatch) => {
+    let data = await profileAPI.getStatus(userId)
+    dispatch(setStatus(data));
+}
 
-export const updateStatusThunk = (status) => (dispatch => {
-    profileAPI.updateStatus(status)
-        .then(data => {
-            if (data.resultCode === 0) {
-                dispatch(setStatus(status));
-            }
-
-        });
-})
+export const updateStatusThunk = (status) => async (dispatch) => {
+    let data = await profileAPI.updateStatus(status)
+    if (data.resultCode === 0) {
+        dispatch(setStatus(status));
+    }
+}
 
 
 export default profileReducer;
