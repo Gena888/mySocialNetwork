@@ -2,6 +2,7 @@ import React from 'react';
 import s from './ProfileInfo.module.css';
 import Preloader from './../../Common/Preloader/Preloader';
 import ProfileStatus from './ProfileStatus'
+import ProfileStatusWithHooks from './ProfileStatusWithHooks';
 
 
 const ProfileInfo = (props) => {
@@ -29,7 +30,7 @@ const ProfileInfo = (props) => {
                 </div>
                 <img src={props.profile.photos.large} alt="" />
 
-                <ProfileStatus status={props.status} updateStatusThunk={props.updateStatusThunk} />
+                <ProfileStatusWithHooks status={props.status} updateStatusThunk={props.updateStatusThunk} />
 
                 <div> abot me:
                     <div>{props.profile.aboutMe}</div>
