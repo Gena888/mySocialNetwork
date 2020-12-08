@@ -3,7 +3,7 @@ import './App.css';
 import News from './components/News/News';
 import Music from './components/Music/Music';
 import Settings from './components/Settings/Settings';
-import { Route } from 'react-router-dom';
+import { Route, withRouter } from 'react-router-dom';
 import DialogsContainer from './components/Dialogs/DialogsContainer';
 import NavContainer from './components/Nav/NavContainer';
 import UsersContainer from './components/Users/UsersContainer';
@@ -11,26 +11,22 @@ import ProfileContainer from './components/Profile/ProfileContainer';
 import HeaderContainer from './components/Header/HeaderContainer';
 import Login from './Login/Login';
 import { connect } from 'react-redux';
-import { getUserDataThunk } from './redux/auth-reducer';
 import Preloader from './components/Common/Preloader/Preloader';
 import { initializeApp } from './redux/app-reducer';
+import { compose } from 'redux';
 
 
 class App extends Component {
-
 
   componentDidMount() {
     this.props.initializeApp()
   }
 
-
   render() {
-
 
     if (!this.props.initialized) {
       return <Preloader />
     }
-
 
     return (
       <div className="app-wrapper">
@@ -58,5 +54,7 @@ const mapStateToProps = (state) => ({
 
 
 
-
-export default connect(mapStateToProps, {initializeApp })(App);
+export default compose(
+  withRouter,
+  connect(mapStateToProps, { initializeApp })
+)(App)

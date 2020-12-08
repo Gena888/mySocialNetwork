@@ -6,20 +6,16 @@ import { LoginThunk } from '../redux/auth-reducer';
 import { connect } from 'react-redux';
 import { Redirect } from 'react-router';
 import s from './Login.module.css'
+import { createField } from './../components/Common/FormsControls/FormsControls';
 
-const LoginForm = (props) => {
+const LoginForm = ({ handleSubmit, error }) => {
     return (
-        <form onSubmit={props.handleSubmit}>
-            <div>
-                <Field validate={[required]} placeholder={'Email'} component={Input} name={'email'} />
-            </div>
-            <div>
-                <Field validate={[required]} placeholder={'Password'} component={Input} name={'password'} />
-            </div>
-            {props.error && <div className={s.formSummeryError}>{props.error}</div>}
-            <div>
-                <Field component={Input} type="checkbox" name={'rememberMe'} /> remember me
-        </div>
+        <form onSubmit={handleSubmit}>
+            {/* createField = (validate, placeholder, component, name, type) */}
+            {createField([required], 'Email', Input, 'email', 'text')}
+            {createField([required], 'Password', Input, 'password', 'text')}
+            {error && <div className={s.formSummeryError}>{error}</div>}
+            {createField([], null, Input, 'rememberMe', 'checkbox')}
             <div>
                 <button>LOGIN</button>
             </div>
@@ -33,22 +29,19 @@ const LoginReduxForm = reduxForm({
 })(LoginForm)
 
 
-
-
-
-const Login = (props) => {
+const Login = ({ LoginThunk, isAuth, passError }) => {
 
     const onSubmit = (formData) => {
-        props.LoginThunk(formData.email, formData.password, formData.rememberMe)
+        LoginThunk(formData.email, formData.password, formData.rememberMe)
     }
-    if (props.isAuth) {
+    if (isAuth) {
         return <Redirect to={'/profile'} />
     }
 
     return (
         <div>
             <h1>login</h1>
-            <LoginReduxForm onSubmit={onSubmit} passError={props.passError} />
+            <LoginReduxForm onSubmit={onSubmit} passError={passError} />
         </div>
     )
 }
