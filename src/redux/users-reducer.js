@@ -11,7 +11,7 @@ const TOGGLE_IS_FOLLOWING_PROGRESS = '/users-reduser/TOGGLE_IS_FOLLOWING_PROGRES
 
 let inilialState = {
     usersData: [],
-    pageSize: 4,
+    pageSize: 10,
     totalUsersCount: 0,
     currentPage: 1,
     isFetching: true,

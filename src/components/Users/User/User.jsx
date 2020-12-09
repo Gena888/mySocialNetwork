@@ -1,6 +1,5 @@
 import React from 'react';
 import s from './User.module.css';
-import noUserPhoto from '../../../imagas/no-avatar.png'
 import { NavLink } from 'react-router-dom';
 import { userImgSmall } from './../../Common/UserPhoto/UserPhoto';
 

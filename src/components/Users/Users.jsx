@@ -4,23 +4,20 @@ import User from './User/User';
 
 
 let Users = ({
-    followThunk, unfollowThunk, totalUsersCount,
+    followThunk, unfollowThunk, totalItemsCount,
     followingInProgress, usersData, pageSize,
     onPageChanged, currentPage, ...props }) => {
 
-    let pagesCount =
-        Math.ceil(totalUsersCount / pageSize);
-    let pages = [];
-    for (let i = 1; i <= pagesCount; i++) {
-        pages.push(i)
-    }
+
 
     return (
         <div>
             <Paginator
-                pages={pages}
                 onPageChanged={onPageChanged}
-                currentPage={currentPage} />
+                currentPage={currentPage}
+                totalItemsCount={totalItemsCount}
+                pageSize={pageSize}
+            />
 
             {usersData.map((u) =>
                 <User
