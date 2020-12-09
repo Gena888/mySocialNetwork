@@ -5,12 +5,12 @@ import MyPostsContainer from './MyPosts/MyPostsContainer';
 
 
 
-const Profile = (props) => {
+const Profile = ({ status, updateStatusThunk, profile }) => {
     // debugger
     return (
         <div>
-            <ProfileInfo profile={props.profile}
-                status={props.status} updateStatusThunk={props.updateStatusThunk} />
+            <ProfileInfo profile={profile}
+                status={status} updateStatusThunk={updateStatusThunk} />
             <MyPostsContainer />
         </div>
     );

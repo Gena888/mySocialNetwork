@@ -8,17 +8,17 @@ import { getPageSize, getUsers, getTotalUsersCount, getcurrentPage, getIsFetchin
 
 
 class UsersContainer extends React.Component {
-    constructor(props) {
-        super(props);
-    }
+
 
     componentDidMount = () => {
-        this.props.getUsersThunk(this.props.currentPage, this.props.pageSize)
+        const { getUsersThunk, currentPage, pageSize } = this.props
+        getUsersThunk(currentPage, pageSize)
     }
 
     onPageChanged = (pageNumber) => {
-        this.props.setCurrentPage(pageNumber);
-        this.props.getUsersThunk(pageNumber, this.props.pageSize)
+        const { setCurrentPage, getUsersThunk, pageSize } = this.props
+        setCurrentPage(pageNumber);
+        getUsersThunk(pageNumber, pageSize)
     }
 
     render = () => {
@@ -35,23 +35,10 @@ class UsersContainer extends React.Component {
                     followingInProgress={this.props.followingInProgress}
                     unfollowThunk={this.props.unfollowThunk}
                     followThunk={this.props.followThunk}
-
                 />
             </>)
     }
 }
-
-// const mapStateToProps = (state) => {
-//     return {
-//         usersData: state.usersPage.usersData,
-//         pageSize: state.usersPage.pageSize,
-//         totalUsersCount: state.usersPage.totalUsersCount,
-//         currentPage: state.usersPage.currentPage,
-//         isFetching: state.usersPage.isFetching,
-//         followingInProgress: state.usersPage.followingInProgress,
-
-//     }
-// } 
 
 
 const mapStateToProps = (state) => {
@@ -62,12 +49,8 @@ const mapStateToProps = (state) => {
         currentPage: getcurrentPage(state),
         isFetching: getIsFetching(state),
         followingInProgress: getFollowingInProgress(state)
-
     }
 }
-
-
-
 
 export default compose(
     connect(mapStateToProps, { setCurrentPage, getUsersThunk, unfollowThunk, followThunk }),

@@ -10,3 +10,8 @@
 .backgroundImage img{
     width: 40%;
 }
+
+
+.userPhoto {
+    max-width: 40%;
+}

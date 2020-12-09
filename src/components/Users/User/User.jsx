@@ -1,7 +1,8 @@
 import React from 'react';
 import s from './User.module.css';
-import userPhoto from '../../../imagas/no-avatar.png'
+import noUserPhoto from '../../../imagas/no-avatar.png'
 import { NavLink } from 'react-router-dom';
+import { userImgSmall } from './../../Common/UserPhoto/UserPhoto';
 
 
 let User = ({
@@ -12,9 +13,10 @@ let User = ({
         <div >
             <span>
                 <div>
-                    <NavLink to={'/Profile/' + user.id}> <img className={s.userPhoto}
-                        src={user.photos.small != null ? user.photos.small : userPhoto}
-                        alt="" />
+                    <NavLink to={'/Profile/' + user.id}>
+                        <img className={s.userPhoto}
+                            src={userImgSmall(user)}
+                            alt="userAva" />
                     </NavLink>
                 </div>
                 <div>
