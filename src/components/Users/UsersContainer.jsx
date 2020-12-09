@@ -3,7 +3,6 @@ import React from 'react';
 import { setCurrentPage, getUsersThunk, unfollowThunk, followThunk } from './../../redux/users-reducer';
 import Users from './Users';
 import Preloader from '../Common/Preloader/Preloader';
-import { withAuthRedirect } from './../../Hoc/withAuthRedirect';
 import { compose } from 'redux';
 import { getPageSize, getUsers, getTotalUsersCount, getcurrentPage, getIsFetching, getFollowingInProgress } from './../../redux/selectors/user-selectors';
 
@@ -25,7 +24,6 @@ class UsersContainer extends React.Component {
     render = () => {
         return (
             <>
-
                 {this.props.isFetching ? <Preloader /> : null}
 
                 <Users
