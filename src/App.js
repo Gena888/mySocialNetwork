@@ -15,39 +15,40 @@ import { initializeApp } from './redux/app-reducer';
 import { compose } from 'redux';
 import store from './redux/redux-store';
 const Music = React.lazy(() => import('./components/Music/Music'))
+const Music = React.lazy(() => import('./Login/Login''))
 
 
 class App extends Component {
 
-  componentDidMount() {
-    this.props.initializeApp()
-  }
-
-  render() {
-
-    if (!this.props.initialized) {
-      return <Preloader />
+    componentDidMount() {
+      this.props.initializeApp()
     }
 
-    return (
-      <div className="app-wrapper">
+    render() {
 
-        <HeaderContainer />
-        <NavContainer />
-        <div className='app-wrapper-content'>
-          <Route path='/Profile/:userId?' render={() => <ProfileContainer />} />
-          <Route path='/Dialogs' render={() => <DialogsContainer />} />
-          <Route path='/Users' render={() => <UsersContainer />} />
-          <Route path='/News' render={() => <News />} />
-          <Route path='/Music' render={() => { return <React.Suspense fallback={<Preloader/>}> <Music /></React.Suspense> }} />
-          <Route path='/Settings' render={() => <Settings />} />
-          <Route path='/Login' render={() => <Login />} />
+      if (!this.props.initialized) {
+        return <Preloader />
+      }
+
+      return (
+        <div className="app-wrapper">
+
+          <HeaderContainer />
+          <NavContainer />
+          <div className='app-wrapper-content'>
+            <Route path='/Profile/:userId?' render={() => <ProfileContainer />} />
+            <Route path='/Dialogs' render={() => <DialogsContainer />} />
+            <Route path='/Users' render={() => <UsersContainer />} />
+            <Route path='/News' render={() => <News />} />
+            <Route path='/Music' render={() => { return <React.Suspense fallback={<Preloader />}> <Music /></React.Suspense> }} />
+            <Route path='/Settings' render={() => <Settings />} />
+            <Route path='/Login' render={() => { return <React.Suspense fallback={<Preloader />}> <Login /> </React.Suspense> }} />
+          </div>
+
         </div>
-
-      </div>
-    );
+      );
+    }
   }
-}
 
 const mapStateToProps = (state) => ({
   initialized: state.app.initialized
