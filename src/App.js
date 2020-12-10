@@ -1,7 +1,6 @@
-import React, { Component } from 'react';
+import React, { Component, lazy, Suspense } from 'react';
 import './App.css';
 import News from './components/News/News';
-import Music from './components/Music/Music';
 import Settings from './components/Settings/Settings';
 import { Route, withRouter, BrowserRouter } from 'react-router-dom';
 import DialogsContainer from './components/Dialogs/DialogsContainer';
@@ -15,6 +14,7 @@ import Preloader from './components/Common/Preloader/Preloader';
 import { initializeApp } from './redux/app-reducer';
 import { compose } from 'redux';
 import store from './redux/redux-store';
+const Music = React.lazy(() => import('./components/Music/Music'))
 
 
 class App extends Component {
@@ -39,7 +39,7 @@ class App extends Component {
           <Route path='/Dialogs' render={() => <DialogsContainer />} />
           <Route path='/Users' render={() => <UsersContainer />} />
           <Route path='/News' render={() => <News />} />
-          <Route path='/Music' render={() => <Music />} />
+          <Route path='/Music' render={() => { return <React.Suspense fallback={<Preloader/>}> <Music /></React.Suspense> }} />
           <Route path='/Settings' render={() => <Settings />} />
           <Route path='/Login' render={() => <Login />} />
         </div>
