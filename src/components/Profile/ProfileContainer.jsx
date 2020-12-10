@@ -10,7 +10,7 @@ import { compose } from 'redux';
 
 class ProfileContainer extends React.Component {
 
-    componentDidMount() {
+    refreshProfile() {
         let userId = this.props.match.params.userId;
         if (!userId) {
             userId = this.props.autorisedUserId;
@@ -22,16 +22,12 @@ class ProfileContainer extends React.Component {
         this.props.getStatusThunk(userId);
     }
 
+    componentDidMount() {
+        this.refreshProfile()
+    }
+
     componentDidUpdate(prevProps, prevState) {
-        let userId = this.props.match.params.userId;
-        if (!userId) {
-            userId = this.props.autorisedUserId;
-            if (!userId) {
-                this.props.history.push('/Login')
-            }
-        }
-        this.props.getProfileDataThunk(userId);
-        this.props.getStatusThunk(userId);
+        this.refreshProfile()
     }
 
     render() {
