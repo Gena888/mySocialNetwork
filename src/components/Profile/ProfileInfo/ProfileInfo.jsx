@@ -4,16 +4,21 @@ import Preloader from './../../Common/Preloader/Preloader';
 import ProfileStatus from './ProfileStatus'
 import ProfileStatusWithHooks from './ProfileStatusWithHooks';
 import noUserPhoto from '../../../imagas/no-avatar.png'
-import { userImgLarge } from '../../Common/UserPhoto/UserPhoto';
+import { isUserImgLarge } from '../../Common/UserPhoto/UserPhoto';
 
-const ProfileInfo = ({ profile, updateStatusThunk, status }) => {
+const ProfileInfo = ({ profile, updateStatusThunk, status, isOwner, savePhotoThunk }) => {
     // debugger
 
 
     if (!profile) {
         return <Preloader />
     }
-    // debugger
+
+    const onMainPhotoSelected = (e) => {
+        if (e.target.files.length) {
+            savePhotoThunk(e.target.files[0])
+        }
+    }
 
     return (
         <div>
@@ -28,9 +33,13 @@ const ProfileInfo = ({ profile, updateStatusThunk, status }) => {
                     </div>
                 </div>
                 <img className={s.userPhoto}
-                    src={userImgLarge(profile)}
-                    alt="profilePhoto" />
-                <ProfileStatusWithHooks status={status} updateStatusThunk={updateStatusThunk} />
+
+                    src={isUserImgLarge(profile)} alt="profilePhoto" />
+                {isOwner && <input type={'file'} onChange={onMainPhotoSelected} />}
+
+                <ProfileStatusWithHooks
+                    status={status}
+                    updateStatusThunk={updateStatusThunk} />
                 <div> abot me:
                     <div>{profile.aboutMe}</div>
                 </div>

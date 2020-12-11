@@ -1,7 +1,7 @@
 import React from 'react';
 import s from './User.module.css';
 import { NavLink } from 'react-router-dom';
-import { userImgSmall } from './../../Common/UserPhoto/UserPhoto';
+import { isUserImgSmall } from './../../Common/UserPhoto/UserPhoto';
 
 
 let User = ({
@@ -14,7 +14,7 @@ let User = ({
                 <div>
                     <NavLink to={'/Profile/' + user.id}>
                         <img className={s.userPhoto}
-                            src={userImgSmall(user)}
+                            src={isUserImgSmall(user)}
                             alt="userAva" />
                     </NavLink>
                 </div>

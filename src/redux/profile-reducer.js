@@ -4,6 +4,8 @@ const ADD_POST = '/profile-reducer/ADD-POST';
 const SET_USER_PROFILE = '/profile-reducer/SET_USER_PROFILE';
 const SET_STATUS = '/profile-reducer/SET_STATUS';
 const DELETE_POST = '/profile-reducer/DELETE_POST';
+const SAVE_PHOTO_SUCCESS = '/profile-reducer/SAVE_PHOTO_SUCCESS'
+
 
 let initialState = {
     postsData: [
@@ -46,7 +48,14 @@ const profileReducer = (state = initialState, action) => {
                 ...state,
                 postsData: state.postsData.filter(p => p.id != action.postId)
             }
-
+        case SAVE_PHOTO_SUCCESS:
+            return {
+                ...state,
+                profile: {
+                    ...state.profile,
+                    photos: action.photos
+                }
+            }
 
 
         default:
@@ -55,28 +64,15 @@ const profileReducer = (state = initialState, action) => {
     };
 
 };
+// action creators
 
-export const deletePostAC = (postId) => ({
-    type: DELETE_POST,
-    postId
-})
+export const deletePostAC = (postId) => ({ type: DELETE_POST, postId })
+export const addNewPostAC = (newTextBody) => ({ type: ADD_POST, newTextBody });
+export const setUserProfile = (profile) => ({ type: SET_USER_PROFILE, profile })
+export const setStatus = (status) => ({ type: SET_STATUS, status: status })
+export const savaPhotoSuccess = (photos) => ({ type: SAVE_PHOTO_SUCCESS, photos })
 
-
-export const addNewPostAC = (newTextBody) => ({
-    type: ADD_POST,
-    newTextBody
-});
-
-export const setUserProfile = (profile) => ({
-    type: SET_USER_PROFILE,
-    profile
-})
-
-export const setStatus = (status) => ({
-    type: SET_STATUS,
-    status: status
-})
-///--
+/// thunks
 
 
 export const getProfileDataThunk = (userId) => async (dispatch) => {
@@ -96,5 +92,11 @@ export const updateStatusThunk = (status) => async (dispatch) => {
     }
 }
 
+export const savePhotoThunk = (file) => async (dispatch) => {
+    let data = await profileAPI.putNewPhoto(file)
+    if (data.resultCode === 0) {
+        dispatch(savaPhotoSuccess(data.data.photos));
+    }
+}
 
 export default profileReducer;
