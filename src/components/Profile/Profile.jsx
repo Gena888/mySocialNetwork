@@ -5,11 +5,12 @@ import MyPostsContainer from './MyPosts/MyPostsContainer';
 
 
 
-const Profile = ({ status, updateStatusThunk, profile, isOwner, savePhotoThunk }) => {
+const Profile = ({ status, updateStatusThunk, profile, isOwner, savePhotoThunk, saveProfileThunk }) => {
     // debugger
     return (
         <div>
             <ProfileInfo
+                saveProfileThunk={saveProfileThunk}
                 savePhotoThunk={savePhotoThunk}
                 isOwner={isOwner}
                 profile={profile}

@@ -2,9 +2,6 @@
     padding: 10px;
 }
 
-
-
-
 .backgroundImage img{
     width: 40%;
 }
@@ -12,4 +9,8 @@
 
 .userPhoto {
     max-width: 40%;
+}
+
+.contact {
+    padding-left: 2%;
 }

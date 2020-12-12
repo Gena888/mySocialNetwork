@@ -99,4 +99,12 @@ export const savePhotoThunk = (file) => async (dispatch) => {
     }
 }
 
+export const saveProfileThunk = (profile) => async (dispatch, getState) => {
+    let userId = getState().auth.userId
+    let data = await profileAPI.saveProfile(profile)
+    if (data.resultCode === 0) {
+        dispatch(getProfileDataThunk(userId));
+    }
+}
+
 export default profileReducer;
