@@ -1,24 +1,29 @@
 import React from 'react';
-import { Field, reduxForm, submit } from 'redux-form';
+import { reduxForm, submit } from 'redux-form';
 import { Input } from '../components/Common/FormsControls/FormsControls';
 import { required } from './../Utils/Validators/Validaors';
-import { LoginThunk } from '../redux/auth-reducer';
+import { LoginThunk, setErrorThunk } from '../redux/auth-reducer';
 import { connect } from 'react-redux';
 import { Redirect } from 'react-router';
 import s from './Login.module.css'
 import { createField } from './../components/Common/FormsControls/FormsControls';
 
-const LoginForm = ({ handleSubmit, error }) => {
+const LoginForm = ({ handleSubmit, error, captchaUrl, setErrorThunk, inStateError }) => {
     return (
         <form onSubmit={handleSubmit}>
             {/* createField = (validate, placeholder, component, name, type) */}
             {createField([required], 'Email', Input, 'email', 'text')}
             {createField([required], 'Password', Input, 'password', 'text')}
-            {error && <div className={s.formSummeryError}>{error}</div>}
             {createField([], null, Input, 'rememberMe', 'checkbox')}
+            {captchaUrl && createField([required], 'Captha', Input, 'captcha', 'text')}
             <div>
                 <button>LOGIN</button>
             </div>
+            {error ? setErrorThunk(error) : null}
+            <div className={inStateError || captchaUrl ? s.formSummeryError : ''}>
+                {inStateError || captchaUrl && <div>{inStateError}</div>}
+            </div>
+
         </form>
     )
 }
@@ -29,10 +34,10 @@ const LoginReduxForm = reduxForm({
 })(LoginForm)
 
 
-const Login = ({ LoginThunk, isAuth, passError }) => {
+const Login = ({ LoginThunk, isAuth, captchaUrl, setErrorThunk, inStateError }) => {
 
     const onSubmit = (formData) => {
-        LoginThunk(formData.email, formData.password, formData.rememberMe)
+        LoginThunk(formData.email, formData.password, formData.rememberMe, formData.captcha)
     }
     if (isAuth) {
         return <Redirect to={'/profile'} />
@@ -41,14 +46,24 @@ const Login = ({ LoginThunk, isAuth, passError }) => {
     return (
         <div>
             <h1>login</h1>
-            <LoginReduxForm onSubmit={onSubmit} passError={passError} />
+            <LoginReduxForm
+                onSubmit={onSubmit}
+                captchaUrl={captchaUrl}
+                setErrorThunk={setErrorThunk}
+                inStateError={inStateError}
+            />
+            <div>
+                {captchaUrl && <img className={s.captcha} src={captchaUrl} alt="captchaImg" />}
+            </div>
         </div>
     )
 }
 
 const mapStateToProps = (state) => ({
     isAuth: state.auth.isAuth,
-    passError: state.auth.passError
+    captchaUrl: state.auth.captchaUrl,
+    inStateError: state.auth.inStateError
+
 })
 
-export default connect(mapStateToProps, { LoginThunk })(Login);
+export default connect(mapStateToProps, { LoginThunk, setErrorThunk })(Login);

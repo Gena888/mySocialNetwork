@@ -63,7 +63,7 @@ export const profileAPI = {
     },
     saveProfile(profile) {
         return instanse.put('profile', profile)
-        .then(response => response.data)
+            .then(response => response.data)
     }
 
 }
@@ -77,11 +77,12 @@ export const authAPI = {
 
     },
 
-    Login(email, password, rememberMe = false) {
+    Login(email, password, rememberMe = false, captcha = null) {
         return instanse.post('auth/login', {
             email,
             password,
-            rememberMe
+            rememberMe,
+            captcha
         })
             .then(response => response.data)
     },
@@ -91,6 +92,13 @@ export const authAPI = {
             .then(response => response.data)
     }
 
+}
+
+export const securityAPI = {
+    getCaptchaUrt() {
+        return instanse.get('security/get-captcha-url')
+            .then(response => response.data)
+    }
 }
 
 
