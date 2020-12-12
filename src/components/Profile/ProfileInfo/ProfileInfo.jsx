@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import s from './ProfileInfo.module.css';
 import Preloader from './../../Common/Preloader/Preloader';
 import ProfileStatusWithHooks from './ProfileStatusWithHooks';
@@ -6,7 +6,12 @@ import { isUserImgLarge } from '../../Common/UserPhoto/UserPhoto';
 import ProfileDataForm from './ProfileDataForm';
 
 const ProfileInfo = ({
-    profile, updateStatusThunk, status, isOwner, savePhotoThunk, saveProfileThunk }) => {
+    profile, updateStatusThunk, status, isOwner,
+    savePhotoThunk, saveProfileThunk, isValidInput }) => {
+
+    useEffect(() => {
+        isValidInput && setEditMode(false);
+    })
 
     const [editMode, setEditMode] = useState(false);
 
@@ -20,10 +25,11 @@ const ProfileInfo = ({
         }
     }
 
+
+
     const onSubmit = (formData) => {
-        saveProfileThunk(formData).then(
-            () => { setEditMode(false) }
-        )
+        saveProfileThunk(formData);
+        // isValidInput && setEditMode(false);
 
     }
 

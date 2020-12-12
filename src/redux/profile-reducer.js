@@ -5,7 +5,8 @@ const ADD_POST = '/profile-reducer/ADD-POST';
 const SET_USER_PROFILE = '/profile-reducer/SET_USER_PROFILE';
 const SET_STATUS = '/profile-reducer/SET_STATUS';
 const DELETE_POST = '/profile-reducer/DELETE_POST';
-const SAVE_PHOTO_SUCCESS = '/profile-reducer/SAVE_PHOTO_SUCCESS'
+const SAVE_PHOTO_SUCCESS = '/profile-reducer/SAVE_PHOTO_SUCCESS';
+const SET_IS_VALID_INPUT = '/profile-reducer/SET_IS_VALID_INPUT'
 
 
 let initialState = {
@@ -15,7 +16,8 @@ let initialState = {
         { id: 3, likes: 321, message: 'second post hear' }
     ],
     profile: null,
-    status: null
+    status: null,
+    isValidInput: false
 };
 
 const profileReducer = (state = initialState, action) => {
@@ -57,6 +59,12 @@ const profileReducer = (state = initialState, action) => {
                     photos: action.photos
                 }
             }
+        case SET_IS_VALID_INPUT:
+            debugger
+            return {
+                ...state,
+                isValidInput: action.isValid
+            }
 
 
         default:
@@ -72,6 +80,7 @@ export const addNewPostAC = (newTextBody) => ({ type: ADD_POST, newTextBody });
 export const setUserProfile = (profile) => ({ type: SET_USER_PROFILE, profile })
 export const setStatus = (status) => ({ type: SET_STATUS, status: status })
 export const savaPhotoSuccess = (photos) => ({ type: SAVE_PHOTO_SUCCESS, photos })
+export const setIsValidInput = (isValid) => ({ type: SET_IS_VALID_INPUT, isValid })
 
 /// thunks
 
@@ -100,13 +109,16 @@ export const savePhotoThunk = (file) => async (dispatch) => {
     }
 }
 
+
 export const saveProfileThunk = (profile) => async (dispatch, getState) => {
     let userId = getState().auth.userId
     let data = await profileAPI.saveProfile(profile)
     if (data.resultCode === 0) {
-        dispatch(getProfileDataThunk(userId));
-        
+        dispatch(getProfileDataThunk(userId))
+        dispatch( setIsValidInput(true))
+
     } else {
+        dispatch( setIsValidInput(false))
         let wrongNetwork = data.messages[0].slice(
             data.messages[0].indexOf(">") + 1,
             data.messages[0].indexOf(")")
@@ -118,7 +130,7 @@ export const saveProfileThunk = (profile) => async (dispatch, getState) => {
             })
         );
         return Promise.reject(data.messages[0]);
-        
+
         // как сделать чтобы все сообщения сразу подсветились? не смог((
     }
 

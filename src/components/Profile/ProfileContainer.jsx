@@ -41,6 +41,7 @@ class ProfileContainer extends React.Component {
                     isOwner={!this.props.match.params.userId}
                     profile={this.props.profile}
                     status={this.props.status}
+                    isValidInput={this.props.isValidInput}
                     updateStatusThunk={this.props.updateStatusThunk} />
             </div>
         )
@@ -50,7 +51,8 @@ let mapStateToProps = (state) => ({
     profile: state.profilePage.profile,
     status: state.profilePage.status,
     autorisedUserId: state.auth.userId,
-    isAuth: state.auth.isAuth
+    isAuth: state.auth.isAuth,
+    isValidInput: state.profilePage.isValidInput
 })
 
 

@@ -5,8 +5,9 @@ import MyPostsContainer from './MyPosts/MyPostsContainer';
 
 
 
-const Profile = ({ status, updateStatusThunk, profile, isOwner, savePhotoThunk, saveProfileThunk }) => {
-    // debugger
+const Profile = ({
+    status, updateStatusThunk, profile,
+    isOwner, savePhotoThunk, saveProfileThunk, isValidInput }) => {
     return (
         <div>
             <ProfileInfo
@@ -15,7 +16,9 @@ const Profile = ({ status, updateStatusThunk, profile, isOwner, savePhotoThunk, 
                 isOwner={isOwner}
                 profile={profile}
                 status={status}
-                updateStatusThunk={updateStatusThunk} />
+                updateStatusThunk={updateStatusThunk}
+                isValidInput={isValidInput}
+            />
             <MyPostsContainer />
         </div>
     );
