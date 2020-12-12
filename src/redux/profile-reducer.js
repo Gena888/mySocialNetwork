@@ -1,4 +1,5 @@
 import { profileAPI } from './../api/api';
+import { stopSubmit } from 'redux-form';
 
 const ADD_POST = '/profile-reducer/ADD-POST';
 const SET_USER_PROFILE = '/profile-reducer/SET_USER_PROFILE';
@@ -104,7 +105,31 @@ export const saveProfileThunk = (profile) => async (dispatch, getState) => {
     let data = await profileAPI.saveProfile(profile)
     if (data.resultCode === 0) {
         dispatch(getProfileDataThunk(userId));
+        
+    } else {
+        let wrongNetwork = data.messages[0].slice(
+            data.messages[0].indexOf(">") + 1,
+            data.messages[0].indexOf(")")
+        )
+            .toLocaleLowerCase();
+        dispatch(
+            stopSubmit("edit-profile", {
+                contacts: { [wrongNetwork]: data.messages[0] }
+            })
+        );
+        return Promise.reject(data.messages[0]);
+        
+        // как сделать чтобы все сообщения сразу подсветились? не смог((
     }
+
 }
 
+
 export default profileReducer;
+
+
+
+// let key = data.messages[0].match(/Contacts->(\w+)/)[1].toLowerCase();
+// dispatch(stopSubmit('edit-profile', {
+//     contacts: { [key]: data.messages[0] },
+// })); тоже самое что и выше в else только с регулярным выражением. 

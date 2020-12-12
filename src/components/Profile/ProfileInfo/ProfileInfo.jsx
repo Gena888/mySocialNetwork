@@ -10,7 +10,6 @@ const ProfileInfo = ({
 
     const [editMode, setEditMode] = useState(false);
 
-    console.log(profile)
     if (!profile) {
         return <Preloader />
     }
@@ -22,8 +21,10 @@ const ProfileInfo = ({
     }
 
     const onSubmit = (formData) => {
-        saveProfileThunk(formData)
-        setEditMode(false)
+        saveProfileThunk(formData).then(
+            () => { setEditMode(false) }
+        )
+
     }
 
     return (
@@ -45,6 +46,7 @@ const ProfileInfo = ({
 
                 {editMode
                     ? <ProfileDataForm
+                        profile={profile}
                         initialValues={profile}
                         onSubmit={onSubmit}
                     />

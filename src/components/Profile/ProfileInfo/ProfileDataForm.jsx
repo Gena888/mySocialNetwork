@@ -1,21 +1,28 @@
 import { React } from 'react';
 import { reduxForm } from 'redux-form';
 import { createField, Input, Textarea } from './../../Common/FormsControls/FormsControls';
-import { Contact } from './ProfileInfo';
+import s from './ProfileInfo.module.css';
+import sForm from './../../Common/FormsControls/FormsControls.module.css'
 
 
 
 
-const ProfileDataForm = ({ handleSubmit }) => {
+const ProfileDataForm = ({ handleSubmit, profile, error }) => {
     return (
         <div>
             <span>you are in editMode</span>
             {/* createField = (validate, placeholder, component, name, type) */}
 
+            {/* save button */}
             <form onSubmit={handleSubmit} >
                 <div>
                     <button>save</button>
                 </div>
+                {/* error message */}
+                {error &&
+                    <div className={sForm.formSummeryError}>
+                        {error}
+                    </div>}
 
                 {/* full name */}
                 <div>
@@ -38,12 +45,16 @@ const ProfileDataForm = ({ handleSubmit }) => {
                     <b>My professional skills: </b>
                     {createField([], 'lookingForAJobDescription', Textarea, "lookingForAJobDescription", 'text')}
                 </div>
-                {/* <div>
+                <div>
                     <b>Contacts: </b>
                     {Object.keys(profile.contacts).map(key => {
-                        return <Contact key={key} contactTitel={key} ContactValue={profile.contacts[key]} />
+                        return (
+                            <div key={key} className={s.contact}>
+                                <b>{key}: {createField([], key, Input, "contacts." + key.toLocaleLowerCase(), 'text')}</b>
+                            </div>)
                     })}
-                </div> */}
+                </div>
+
             </form >
 
 
