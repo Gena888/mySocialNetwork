@@ -12,6 +12,9 @@ const ProfileStatusWithHooks = (props) => {
         setStatus(props.status)
     }, [props.status])
 
+    // хок useEffect вызывается при render компоненты 
+    // в useEffect вторым параметром передаётся массив зависимостей 
+
     const activateEditMode = () => {
         setEditMode(true);
     }

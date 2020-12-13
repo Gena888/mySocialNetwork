@@ -94,11 +94,17 @@ export const getStatusThunk = (userId) => async (dispatch) => {
     let data = await profileAPI.getStatus(userId)
     dispatch(setStatus(data));
 }
-
+//по окончанию асинхронной операции мы пытаемся выполнить try, если пришла ошибка -
+// - мы перехватываем её catch и что то с ней делаем, в ней есть message. код шибки(500/404 и тд.)
+// это локальный обработчик ошибок в противовес глоаблному в app.js
 export const updateStatusThunk = (status) => async (dispatch) => {
-    let data = await profileAPI.updateStatus(status)
-    if (data.resultCode === 0) {
-        dispatch(setStatus(status));
+    try {
+        let data = await profileAPI.updateStatus(status)
+        if (data.resultCode === 0) {
+            dispatch(setStatus(status));
+        }
+    } catch (error) {
+        console.lor(error)
     }
 }
 
@@ -115,10 +121,10 @@ export const saveProfileThunk = (profile) => async (dispatch, getState) => {
     let data = await profileAPI.saveProfile(profile)
     if (data.resultCode === 0) {
         dispatch(getProfileDataThunk(userId))
-        dispatch( setIsValidInput(true))
+        dispatch(setIsValidInput(true))
 
     } else {
-        dispatch( setIsValidInput(false))
+        dispatch(setIsValidInput(false))
         let wrongNetwork = data.messages[0].slice(
             data.messages[0].indexOf(">") + 1,
             data.messages[0].indexOf(")")

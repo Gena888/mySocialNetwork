@@ -14,7 +14,8 @@ let Paginator = ({ onPageChanged, pageSize, currentPage, totalItemsCount, portio
     let [portionNumber, setPortionNumber] = useState(1);
     let leftPortionNumber = (portionNumber - 1) * portionSize + 1;
     let rigthPortionNumber = (portionNumber * portionSize)
-
+//classnames( cn ) функцию в которую мы через , передаём классы 
+// {cn(style1, {[style2]: условие})} <-- кейс с условием для одного из стилей
     return (
         <div className={s.paginator}>
             {portionNumber > 1 &&

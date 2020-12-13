@@ -25,8 +25,6 @@ const ProfileInfo = ({
         }
     }
 
-
-
     const onSubmit = (formData) => {
         saveProfileThunk(formData);
         // isValidInput && setEditMode(false);

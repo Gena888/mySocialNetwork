@@ -25,7 +25,7 @@ class ProfileContainer extends React.Component {
     componentDidMount() {
         this.refreshProfile()
     }
-
+// .match пришёл в пропсы из HOC withRouter. это инфа связанная и URL
     componentDidUpdate(prevProps, prevState) {
         if (this.props.match.params.userId != prevProps.match.params.userId) {
             this.refreshProfile()
