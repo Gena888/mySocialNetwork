@@ -9,16 +9,23 @@ let User = ({
     followingInProgress, user, ...props }) => {
 
     return (
-        <div >
-            <span>
-                <div>
-                    <NavLink to={'/Profile/' + user.id}>
-                        <img className={s.userPhoto}
-                            src={isUserImgSmall(user)}
-                            alt="userAva" />
-                    </NavLink>
-                </div>
-                <div>
+        <div className={s.userWrapp} >
+
+            <div className={s.userPhoto}>
+                <NavLink to={'/Profile/' + user.id}>
+                    <img
+                        src={isUserImgSmall(user)}
+                        alt="userAva" />
+                </NavLink>
+            </div>
+
+            <div className={s.userInfo} >
+
+                <div className={s.userName}> <b>Name:</b> {user.name}</div>
+
+                <div className={s.userStatus}><b> Status:</b> {user.status ? user.status : 'no status'}</div>
+
+                <div className={s.button}>
                     {user.followed
                         ? <button
                             disabled={followingInProgress.some(id => id === user.id)}
@@ -31,17 +38,9 @@ let User = ({
                                 followThunk(user.id)
                             }} >Follow</button>}
                 </div>
-            </span>
-            <span>
-                <span>
-                    <div>{user.name}</div>
-                    <div>{user.status}</div>
-                </span>
-                <span>
-                    <div>{'user.location.country'}</div>
-                    <div>{'user.location.sity'}</div>
-                </span>
-            </span>
+            </div>
+
+
         </div>
     )
 }

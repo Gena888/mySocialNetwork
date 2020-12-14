@@ -1,6 +1,7 @@
 import React from 'react';
 import Paginator from '../Common/Paginator/Paginator';
 import User from './User/User';
+import s from './Users.module.css'
 
 
 let Users = ({
@@ -11,22 +12,27 @@ let Users = ({
 
 
     return (
-        <div>
-            <Paginator
-                onPageChanged={onPageChanged}
-                currentPage={currentPage}
-                totalItemsCount={totalItemsCount}
-                pageSize={pageSize}
-            />
-
-            {usersData.map((u) =>
-                <User
-                    user={u}
-                    followingInProgress={followingInProgress}
-                    followThunk={followThunk}
-                    unfollowThunk={unfollowThunk}
+        <div className={s.usersWrapper}>
+            <div className={s.paginatorDiv}>
+                <Paginator
+                    onPageChanged={onPageChanged}
+                    currentPage={currentPage}
+                    totalItemsCount={totalItemsCount}
+                    pageSize={pageSize}
                 />
-            )}
+            </div>
+            <div className={s.usersDiv}>
+                {usersData.map((u) =>
+                    <User
+                        key={u.id}
+                        user={u}
+                        followingInProgress={followingInProgress}
+                        followThunk={followThunk}
+                        unfollowThunk={unfollowThunk}
+                    />
+                )}
+            </div>
+
         </div>
     )
 }

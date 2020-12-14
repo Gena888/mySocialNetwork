@@ -1,13 +1,31 @@
-.paginator { 
-    margin: 10px;
+.paginator {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.pages {
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .pageNumber {
-    padding: 2px;
-    border: 1px solid grey;
+    margin: 5px;
 }
 
-pageNumber.selectedPage {
-    font-weight:  bold;
+.pageNumber.selectedPage {
+    font-weight: bold;
     border-color: black;
+    border-bottom: solid 3px #80A8CC;
 }
+
+.buttonDiv {
+    min-width: 40px;
+    
+}
+
+.prevButton {}
+
+.netxButton {}
