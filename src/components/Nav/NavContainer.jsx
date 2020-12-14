@@ -6,7 +6,8 @@ import Nav from './Nav';
 
 let mapStateToProps = (state) => {
     return {
-        navPage: state.navPage
+        navPage: state.navPage,
+        isAuth: state.auth.isAuth
     }
 }
 

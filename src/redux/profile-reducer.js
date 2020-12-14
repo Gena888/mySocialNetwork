@@ -60,7 +60,6 @@ const profileReducer = (state = initialState, action) => {
                 }
             }
         case SET_IS_VALID_INPUT:
-            debugger
             return {
                 ...state,
                 isValidInput: action.isValid
@@ -137,7 +136,7 @@ export const saveProfileThunk = (profile) => async (dispatch, getState) => {
         );
         return Promise.reject(data.messages[0]);
 
-        // как сделать чтобы все сообщения сразу подсветились? не смог((
+        // как сделать чтобы все сообщения сразу подсветились? 
     }
 
 }

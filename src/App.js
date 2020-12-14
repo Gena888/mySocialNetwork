@@ -20,7 +20,7 @@ const Login = React.lazy(() => import('./Login/Login'))
 class App extends Component {
   //тут мы можем задиспатчить санку на отображение глобальной ошибки.
   catchAllUnhandledError = (reason, promise) => {
-    alert(reason, promise);
+    //console.log(reason, promise);
   }
   //метод жизненного цикла, который выполнится после вмонтирования компоненты 
   // window.addEventListener - садй эффект но в comp.DidMount допустим. 

@@ -4,7 +4,6 @@ import s from './Nav.module.css';
 import NavFriends from './Friends/NavFriends';
 
 const Nav = (props) => {
-    // console.log(props)
     let navFriend =
         props.navPage.navFriendsData.map(navFriendEl =>
             <NavFriends key={navFriendEl.id} imgSrc={navFriendEl.imgSrc} name={navFriendEl.name} />);
@@ -26,14 +25,18 @@ const Nav = (props) => {
             <div className={s.item}>
                 <NavLink activeClassName={s.active} to="/Settings">Settings</NavLink>
             </div>
-            <div className={s.navFriends}>
-                <div>
-                    <h2>Friends</h2>
+            {props.isAuth
+                ? <div className={s.navFriends}>
+                    <div>
+                        <h2>Friends</h2>
+                    </div>
+                    <div className={s.navFriendsInner}>
+                        {navFriend}
+                    </div>
                 </div>
-                <div className={s.navFriendsInner}>
-                    {navFriend}
-                </div>
-            </div>
+                : <div></div>
+            }
+
 
         </nav>
     );

@@ -7,10 +7,12 @@ import ProfileDataForm from './ProfileDataForm';
 
 const ProfileInfo = ({
     profile, updateStatusThunk, status, isOwner,
-    savePhotoThunk, saveProfileThunk, isValidInput }) => {
+    savePhotoThunk, saveProfileThunk, isValidInput, setIsValidInput }) => {
 
     useEffect(() => {
         isValidInput && setEditMode(false);
+        setIsValidInput(false)
+
     })
 
     const [editMode, setEditMode] = useState(false);

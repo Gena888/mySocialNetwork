@@ -10,7 +10,7 @@ import { createField } from './../components/Common/FormsControls/FormsControls'
 
 const LoginForm = ({ handleSubmit, error, captchaUrl, setErrorThunk, inStateError }) => {
     return (
-        <form onSubmit={handleSubmit}>
+        <form className={s.loginForm} onSubmit={handleSubmit}>
             {/* createField = (validate, placeholder, component, name, type) */}
             {createField([required], 'Email', Input, 'email', 'text')}
             {createField([required], 'Password', Input, 'password', 'text')}
@@ -44,7 +44,7 @@ const Login = ({ LoginThunk, isAuth, captchaUrl, setErrorThunk, inStateError }) 
     }
 
     return (
-        <div>
+        <div className={s.loginInner}>
             <h1>login</h1>
             <LoginReduxForm
                 onSubmit={onSubmit}
