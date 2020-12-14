@@ -10,18 +10,16 @@ import { maxLengthCreator, required } from './../../Utils/Validators/Validaors';
 
 const Dialogs = (props) => {
 
-
     let addNewMessage = (values) => {
         props.sendMessage(values.newMessageBody);
     };
 
     let dialogsElements =
         props.dialogsData.map((dialogEl) =>
-            <DialogItem key={dialogEl.id} name={dialogEl.name} id={dialogEl.id} imgSrc={dialogEl.imgSrc} />)
+            <DialogItem paramsUserId={props.match.params.userId} key={dialogEl.id} name={dialogEl.name} id={dialogEl.id} imgSrc={dialogEl.imgSrc} />)
     let messagesElements =
         props.messagesData.map((messageEl) =>
             <Message key={messageEl.id} message={messageEl.message} addresserYou={messageEl.addresserYou} />)
-
 
 
 
@@ -34,7 +32,6 @@ const Dialogs = (props) => {
             <div className={s.messages}>
                 {messagesElements}
                 <AddMessageFormRedux onSubmit={addNewMessage} />
-
             </div>
         </div>
     );
@@ -48,7 +45,7 @@ const AddMessageForm = (props) => {
             <Field validate={[required, maxLength50]} component={Textarea} name={'newMessageBody'} placeholder={'Enter your message'} />
 
             <div>
-                <button>получи своё сообщение</button>
+                <button>Send a Message</button>
             </div>
         </form>
     )

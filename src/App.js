@@ -52,7 +52,7 @@ class App extends Component {
           <Switch>
             <Route exact path='/' render={() => <Redirect to={'/Profile'} />} />
             <Route path='/Profile/:userId?' render={() => <ProfileContainer />} />
-            <Route path='/Dialogs' render={() => <DialogsContainer />} />
+            <Route path='/Dialogs/:userId?' render={() => <DialogsContainer />} />
             <Route path='/Users' render={() => <UsersContainer />} />
             <Route path='/News' render={() => <News />} />
             <Route path='/Music' render={withSuspense(Music)} />

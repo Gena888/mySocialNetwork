@@ -1,15 +1,22 @@
 .dialogs {
     display: grid;
-    grid-template-columns: 2fr 10fr;
+
 }
 
 .dialogsItems {
     padding: 10px;  
+    display: flex;
+    justify-content: space-around;
+    background-color: #FFFBF5;
+    margin: 20px;
+    border: solid 2px #ECE8E2;
+    
 }
 
 .dialogsItems a {
-    color: white;
+    color: black;
     text-decoration: none;
+    
 }
 
 .dialogsItems  .active{
@@ -18,5 +25,8 @@
 
 .messages {
     padding: 40px;
+    background-color: #FFFBF5;
+    margin: 20px;
+    border: solid 2px #ECE8E2;
 }
 

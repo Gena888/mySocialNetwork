@@ -3,15 +3,21 @@ import s from './DialogItem.module.css'
 import { NavLink } from 'react-router-dom';
 
 
-
 const DialogItem = (props) => {
+    console.log(props)
     return (
-        <div className={s.dialog + ' ' + s.active}>
-            <div className={s.avaImg}>
-                <NavLink to={"/dialogs/" + props.id}><img src={props.imgSrc} alt="avatar" /></NavLink>
-            </div>
+        <div className={s.dialog}>
 
-            <NavLink className={s.name} to={"/dialogs/" + props.id}>{props.name}</NavLink>
+            <NavLink to={"/Dialogs/" + props.id}>
+                <div className=
+                    {props.paramsUserId == props.id ? s.active : s.noActive + ' ' + s.avaImg} >
+                    <img src={props.imgSrc} alt="avatar" />
+                </div>
+                <div className={s.name}>
+                    {props.name}
+                </div>
+            </NavLink>
+
             {/* jsx элемент принимает данные для отрисовки из props, которые туда попали из массива данных через .map */}
         </div>
     );

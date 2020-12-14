@@ -9,11 +9,13 @@ let inilialState = {
         { id: 5, imgSrc: 'https://sun9-18.userapi.com/cqGGLrpxAgHQf0x5w9-mtcIKXXXNyF50BocQyA/eAjdupisXrU.jpg', name: 'gleb' }
     ],
     messagesData: [
-        { id: 1, message: 'hi', addresserYou: true },
-        { id: 2, message: 'how are you', addresserYou: false },
-        { id: 3, message: 'yo', addresserYou: true },
-        { id: 4, message: 'yo', addresserYou: true },
-        { id: 5, message: 'yo', addresserYou: true }
+        { id: 1, message: 'Hi, how\'s yours project?', addresserYou: true },
+        { id: 2, message: 'Hi, fine, but i cant finish messages page', addresserYou: false },
+        { id: 3, message: 'Why?', addresserYou: true },
+        { id: 4, message: 'i\'v got no API to interact with messages data', addresserYou: false },
+        { id: 5, message: 'Just create a static component with messages', addresserYou: true },
+        { id: 6, message: 'Ok bro, i\'ll make something like this, thank\'s you ', addresserYou: false },
+        { id: 7, message: 'You are welcome ', addresserYou: true }
     ]
 }
 
