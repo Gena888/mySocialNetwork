@@ -2,25 +2,36 @@
   grid-area: n;
   background-color: #80A8CC;
   min-width: 170px;
-  
+  padding: 5px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
+
+.navInner {}
 
 .item {
   padding: 20px 0px 0px 20px;
 }
 
 .item a {
-  color: #FFF;
+  color: #FFFBF5;
   text-decoration: none;
   font-size: 16px;
 }
 
 .item .active {
-  color: blue;
+  color: #FFFBF5;
+  border-bottom: solid 2px #fffbf5dc;
+  /* border-radius: 45%; */
+  padding: 10px;
+  background: linear-gradient(#80A8CC, rgba(255, 251, 245, 0.158));
 }
 
 .navFriends {
-  margin-top: 15%;
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
 }
 
 .navFriendsInner {
@@ -33,4 +44,15 @@
 .navFriends h2 {
   text-align: center;
   margin-bottom: 0;
+  color: #FFFBF5;
+  letter-spacing: 0.15em;
+}
+
+.line {
+  display: block;
+  height: 2px;
+  width: 140px;
+  background-color: #ece8e24b;
+  margin: auto;
+  margin-top: 50px;
 }

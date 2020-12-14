@@ -10,21 +10,25 @@ const Nav = (props) => {
 
     return (
         <nav className={s.nav}>
-            <div className={s.item}>
-                <NavLink activeClassName={s.active} to="/Profile">Profile</NavLink>
+            <div className={s.navInner}>
+                <div className={s.item}>
+                    <NavLink activeClassName={s.active} to="/Profile">Profile</NavLink>
+                </div>
+                <div className={s.item}>
+                    <NavLink activeClassName={s.active} to="/Dialogs">Messages</NavLink>
+                </div>
+                <div className={s.item}>
+                    <NavLink activeClassName={s.active} to="/Users">Users</NavLink>
+                </div>
+                <div className={s.item}>
+                    <NavLink activeClassName={s.active} to="/News">News</NavLink>
+                </div>
+                <div className={s.item}>
+                    <NavLink activeClassName={s.active} to="/Settings">Settings</NavLink>
+                </div>
+                <div className={s.line}></div>
             </div>
-            <div className={s.item}>
-                <NavLink activeClassName={s.active} to="/Dialogs">Messages</NavLink>
-            </div>
-            <div className={s.item}>
-                <NavLink activeClassName={s.active} to="/Users">Users</NavLink>
-            </div>
-            <div className={s.item}>
-                <NavLink activeClassName={s.active} to="/News">News</NavLink>
-            </div>
-            <div className={s.item}>
-                <NavLink activeClassName={s.active} to="/Settings">Settings</NavLink>
-            </div>
+
             {props.isAuth
                 ? <div className={s.navFriends}>
                     <div>
@@ -36,6 +40,8 @@ const Nav = (props) => {
                 </div>
                 : <div></div>
             }
+
+
 
 
         </nav>
