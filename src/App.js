@@ -2,7 +2,7 @@ import React, { Component, lazy, Suspense } from 'react';
 import './App.css';
 import News from './components/News/News';
 import Settings from './components/Settings/Settings';
-import { Route, withRouter, BrowserRouter, Redirect } from 'react-router-dom';
+import { Route, withRouter, BrowserRouter, Redirect, Switch } from 'react-router-dom';
 import DialogsContainer from './components/Dialogs/DialogsContainer';
 import NavContainer from './components/Nav/NavContainer';
 import UsersContainer from './components/Users/UsersContainer';
@@ -49,15 +49,17 @@ class App extends Component {
         <HeaderContainer />
         <NavContainer />
         <div className='app-wrapper-content'>
-          <Route exact path='/' render={() => <Redirect to={'/Profile'} />} />
-          <Route path='/Profile/:userId?' render={() => <ProfileContainer />} />
-          <Route path='/Dialogs' render={() => <DialogsContainer />} />
-          <Route path='/Users' render={() => <UsersContainer />} />
-          <Route path='/News' render={() => <News />} />
-          <Route path='/Music' render={withSuspense(Music)} />
-          <Route path='/Settings' render={() => <Settings />} />
-          <Route path='/Login' render={() => { return <React.Suspense fallback={<Preloader />}> <Login /> </React.Suspense> }} />
-          <Route path='*' render={() => <div>404 not found</div>} />
+          <Switch>
+            <Route exact path='/' render={() => <Redirect to={'/Profile'} />} />
+            <Route path='/Profile/:userId?' render={() => <ProfileContainer />} />
+            <Route path='/Dialogs' render={() => <DialogsContainer />} />
+            <Route path='/Users' render={() => <UsersContainer />} />
+            <Route path='/News' render={() => <News />} />
+            <Route path='/Music' render={withSuspense(Music)} />
+            <Route path='/Settings' render={() => <Settings />} />
+            <Route path='/Login' render={() => { return <React.Suspense fallback={<Preloader />}> <Login /> </React.Suspense> }} />
+            <Route exact path='*' render={() => <div>404 not found</div>} />
+          </Switch>
         </div>
       </div>
     );

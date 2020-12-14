@@ -1,9 +1,12 @@
 .posts {
   color: aliceblue;
   margin-top: 10px;
-  
+ 
 }
 
 .postsBlock {
+  margin: 20px;
   padding: 10px;
+  background-color: #FFFBF5;
+  border: solid 2px #ECE8E2;
 }

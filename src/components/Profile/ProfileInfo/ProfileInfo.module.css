@@ -1,3 +1,9 @@
+.profileInfo {
+    margin: 20px;
+    background-color: #FFFBF5;
+    border: solid 2px #ECE8E2;
+}
+
 .descriptionBlock {
     padding: 10px;
 }
