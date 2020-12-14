@@ -5,13 +5,22 @@ const Post = (props) => {
     return (
 
         <div className={s.item}>
-            <img className={s.itemImg} src="https://sun9-15.userapi.com/c831109/v831109883/6c1b4/uLG7nnvmBRM.jpg" alt="" />
+            <div className={s.postInfo}>
+                <div>
+                    <img className={s.itemImg} src={props.profile && props.profile.photos.large} alt="" />
+                </div>
+                <div className={s.likes}>
+                    <span>{props.likes} likes</span>
+                </div>
 
-            {props.message}
-
-            <div>
-                <span>{props.likes} likes</span>
             </div>
+            <div className={s.textInfo}>
+                <div>
+                    {props.message}
+                </div>
+
+            </div>
+
         </div>
 
 

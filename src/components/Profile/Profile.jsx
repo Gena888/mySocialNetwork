@@ -19,7 +19,7 @@ const Profile = ({
                 updateStatusThunk={updateStatusThunk}
                 isValidInput={isValidInput}
             />
-            <MyPostsContainer />
+            {isOwner && <MyPostsContainer profile={profile}/>}
         </div>
     );
 }

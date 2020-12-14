@@ -11,9 +11,9 @@ const SET_IS_VALID_INPUT = '/profile-reducer/SET_IS_VALID_INPUT'
 
 let initialState = {
     postsData: [
-        { id: 1, likes: 121, message: 'hallow it.s me' },
-        { id: 2, likes: 231, message: 'it is my firs post' },
-        { id: 3, likes: 321, message: 'second post hear' }
+        { id: 1, likes: 121, message: 'Hallow it\'s my first post. ' },
+        { id: 2, likes: 231, message: 'Here should be second post but i\'v got no idea.' },
+        { id: 3, likes: 321, message: 'For third post i\'v still have no idea. I guess twitter in not for me.' }
     ],
     profile: null,
     status: null,

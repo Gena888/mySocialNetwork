@@ -1,32 +1,39 @@
 .dialogs {
     display: grid;
-
+    max-width: 1200px;
+    /* margin: auto; */
 }
 
 .dialogsItems {
-    padding: 10px;  
+    padding: 10px;
     display: flex;
     justify-content: space-around;
     background-color: #FFFBF5;
     margin: 20px;
     border: solid 2px #ECE8E2;
-    
 }
 
 .dialogsItems a {
-    color: black;
+    color: #626269;
+    text-transform: capitalize;
     text-decoration: none;
-    
 }
 
-.dialogsItems  .active{
+.dialogsItems .active {
     color: gold;
 }
 
 .messages {
-    padding: 40px;
+    padding: 20px;
     background-color: #FFFBF5;
     margin: 0 20px 20px 20px;
     border: solid 2px #ECE8E2;
 }
 
+.message div {
+    color: #626269;
+}
+
+.messageInput {
+    margin-top: 30px;
+}

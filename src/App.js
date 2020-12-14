@@ -1,6 +1,5 @@
 import React, { Component, lazy, Suspense } from 'react';
 import './App.css';
-import News from './components/News/News';
 import Settings from './components/Settings/Settings';
 import { Route, withRouter, BrowserRouter, Redirect, Switch } from 'react-router-dom';
 import DialogsContainer from './components/Dialogs/DialogsContainer';
@@ -15,7 +14,7 @@ import { compose } from 'redux';
 import store from './redux/redux-store';
 import { withSuspense } from './Hoc/withSuspense';
 
-const Music = React.lazy(() => import('./components/Music/Music'))
+const News = React.lazy(() => import('./components/News/News'))
 const Login = React.lazy(() => import('./Login/Login'))
 
 class App extends Component {
@@ -54,8 +53,7 @@ class App extends Component {
             <Route path='/Profile/:userId?' render={() => <ProfileContainer />} />
             <Route path='/Dialogs/:userId?' render={() => <DialogsContainer />} />
             <Route path='/Users' render={() => <UsersContainer />} />
-            <Route path='/News' render={() => <News />} />
-            <Route path='/Music' render={withSuspense(Music)} />
+            <Route path='/News' render={withSuspense(News)} />
             <Route path='/Settings' render={() => <Settings />} />
             <Route path='/Login' render={() => { return <React.Suspense fallback={<Preloader />}> <Login /> </React.Suspense> }} />
             <Route exact path='*' render={() => <div>404 not found</div>} />

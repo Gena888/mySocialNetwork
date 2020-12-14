@@ -3,10 +3,11 @@
   grid-template-areas: "h h" "n c";
   grid-template-rows: 60px 1fr;
   grid-template-columns: 1fr 10fr;
-  min-height: 100%;
+  min-height: 100vh;
+
 }
 
 .app-wrapper-content {
-  grid-area: c;
   background-color: #F2EEE8;
+  min-height: 100vh;
 }
