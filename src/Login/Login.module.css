@@ -37,6 +37,7 @@
     background-color: #80A8CC;
     font-family: sans-serif;
     color: #FFFBF5;
+    outline: none;
 }
 
 .loginButton button:hover {

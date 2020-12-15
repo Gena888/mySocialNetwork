@@ -4,6 +4,7 @@ import Preloader from './../../Common/Preloader/Preloader';
 import ProfileStatusWithHooks from './ProfileStatusWithHooks';
 import { isUserImgLarge } from '../../Common/UserPhoto/UserPhoto';
 import ProfileDataForm from './ProfileDataForm';
+import ProfileData from './ProfileData'
 
 const ProfileInfo = ({
     profile, updateStatusThunk, status, isOwner,
@@ -36,87 +37,59 @@ const ProfileInfo = ({
     return (
         <div className={s.profileInfo}>
             <div className={s.descriptionBlock}>
-                {/* img */}
-                <img className={s.userPhoto}
+                <div className={s.imageBlock} >
+                    {/* img */}
+                    <div className={s.innetImageBlock}>
+                        <img className={s.userPhoto}
 
-                    src={isUserImgLarge(profile)} alt="profilePhoto" />
-                {isOwner && <input type={'file'} onChange={onMainPhotoSelected} />}
+                            src={isUserImgLarge(profile)} alt="profilePhoto" />
+                        <div className={s.onImgButtons}>
+                            <div className={s.changePhotoBtn}>
+                                {/* changePhoto button */}
+                                {isOwner && <input type={'file'} title=' ' onChange={onMainPhotoSelected} />}
+                            </div>
+                            <div>
+                                {/* eddit button */}
+                                {isOwner &&
+                                    <div className={s.editButton}>
+                                        <button onClick={() => { setEditMode(true) }}>edit</button>
+                                    </div>}
+                            </div>
+                        </div>
+                    </div>
 
-                {/* status */}
-                <ProfileStatusWithHooks
-                    status={status}
-                    updateStatusThunk={updateStatusThunk} />
+                </div>
 
-                {editMode
-                    ? <ProfileDataForm
-                        profile={profile}
-                        initialValues={profile}
-                        onSubmit={onSubmit}
-                    />
-                    : <ProfileData
-                        profile={profile}
-                        isOwner={isOwner}
-                        goToEditMode={() => { setEditMode(true) }}
-                    />}
+                <div className={s.infoBlock}>
+                    {/* status */}
+                    <div>
+                        <ProfileStatusWithHooks
+                            status={status}
+                            updateStatusThunk={updateStatusThunk} />
+                    </div>
+                    <div>
+                        {editMode
+                            ? <ProfileDataForm
+                                profile={profile}
+                                initialValues={profile}
+                                onSubmit={onSubmit}
+                            />
+                            : <ProfileData
+                                profile={profile}
+                                isOwner={isOwner}
+                            />}
+                    </div>
 
+                </div>
 
             </div>
+
         </div>
     );
 }
 
-const ProfileData = ({ profile, isOwner, goToEditMode }) => {
-    return (
-        <div>
-
-            {isOwner &&
-                <div>
-                    <button onClick={goToEditMode}>edit</button>
-                </div>}
-
-            {/* full name */}
-            <div>
-                <b>Full name: </b>
-                {profile.fullName}
-            </div>
-
-            {/* aboutme */}
-            <div>
-                <b>abot me: </b>
-                {profile.aboutMe}
-            </div>
-            {/* jobb */}
-            <div>
-                <b>Looking wor a job: </b>
-                {profile.lookingForJob
-                    ? 'yes'
-                    : 'no'}
-            </div>
-            {/* job descriptoin */}
-            <div>
-                <b>My professional skills: </b>
-                {profile.lookingForAJobDescription}
-            </div>
-            <div>
-                <b>Contacts: </b>
-                {Object.keys(profile.contacts).map(key => {
-                    return <Contact key={key} contactTitel={key} ContactValue={profile.contacts[key]} />
-                })}
-            </div>
-        </div >
-    )
-}
 
 
 
-
-export const Contact = ({ contactTitel, ContactValue }) => {
-    return (
-        <div className={s.contact}>
-            <b>{contactTitel}: </b>{ContactValue}
-        </div>
-    )
-
-}
 
 export default ProfileInfo;

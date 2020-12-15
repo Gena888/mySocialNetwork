@@ -6,17 +6,100 @@
 
 .descriptionBlock {
     padding: 10px;
+    display: flex;
+    /* flex-direction: column; */
 }
 
-.backgroundImage img{
-    width: 40%;
+.imageBlock {
+    display: flex;
+    margin-right: 20px;
+    flex-direction: column;
 }
 
+.innetImageBlock {
+    position: relative;
+    flex-basis: content;
+}
+
+.onImgButtons {
+    position: absolute;
+    top: 89.5%;
+    display: flex;
+    margin-right: -3px ;
+    background-color: red;
+}
+
+.changePhotoBtn {}
+
+.editButton {
+    margin-left: -41px ;
+}
 
 .userPhoto {
-    max-width: 40%;
+    max-width: 250px;
+}
+
+/* infoblock */
+
+.infoBlock {
+    display: flex;
+    flex-direction: column;
+    color: #626269;
 }
 
 .contact {
     padding-left: 2%;
+}
+
+.statusBlock {
+    display: block;
+    width: 100%;
+}
+
+.innerStatusBlock {
+    border: solid 1px #ECE8E2;
+    padding: 10px 10px 10px 10px;
+    margin-left: -10px;
+}
+
+.statusBlock input {
+    width: 100%;
+    border: none;
+    border-bottom: solid 1px #ECE8E2;
+    font-size: 18px;
+    font-family: sans-serif;
+    background-color: transparent;
+    padding: 5px;
+    outline: none;
+    color: #626269;
+}
+
+.userStatus {
+    color: #626269;
+    font-size: 18px;
+    font-family: sans-serif;
+}
+
+/* textInfoBlock */
+
+.textInfoBlock {
+    margin-top: 10px;
+}
+
+.textInfoBlock div {
+    padding: 5px 0 0 0;
+    text-transform: ;
+}
+
+/* innerContactsBlock */
+
+.innerContactsBlock {
+    margin-top: 20px;
+    margin-left: -10px;
+    margin-right: -10px;
+}
+
+.innerContactsBlock img {
+    max-width: 50px;
+    padding: 0 10px 0 10px;
 }
