@@ -22,10 +22,12 @@
 
 .item .active {
   color: #FFFBF5;
-  border-bottom: solid 2px #fffbf5dc;
-  /* border-radius: 45%; */
-  padding: 10px;
+  border-bottom: solid 1.5px #fffbf5dc;
+  /* border-radius: 10%; */
+  padding: 10px 10px 8px 10px;
+  margin: -10px -10px -8px -10px;
   background: linear-gradient(#80A8CC, rgba(255, 251, 245, 0.158));
+  transition: 0.1s;
 }
 
 .navFriends {

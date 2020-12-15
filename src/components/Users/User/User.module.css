@@ -23,6 +23,12 @@
 
 .userStatus {}
 
-.button {
-    /* margin-top: 5px; */
+.button button{
+    padding: 4px 8px 3px 8px;
+    border-radius: 10%;
+    border: none;
+    background-color: #80A8CC;
+    font-family: sans-serif;
+    color: #FFFBF5;
+    outline: none;
 }

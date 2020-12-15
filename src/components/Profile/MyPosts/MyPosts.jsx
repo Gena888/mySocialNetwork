@@ -16,7 +16,7 @@ const MyPosts = React.memo((props) => {
 
     return (
         <div className={s.postsBlock} >
-            <h3> my posts</h3>
+            <h3> My posts</h3>
 
             <ReduxAddPost onSubmit={onAddNewPost} />
 
@@ -29,16 +29,18 @@ const MyPosts = React.memo((props) => {
 
 })
 
-const maxLength = maxLengthCreator(10);
+const maxLength = maxLengthCreator(100);
 
 
 const addPost = (props) => {
     return (
-        <form onSubmit={props.handleSubmit}>
-            <Field validate={[required, maxLength]}
+        <form className={s.addPostForm} onSubmit={props.handleSubmit}>
+            <Field rows={1} validate={[required, maxLength]}
                 component={Textarea} name={'newTextBody'}
                 placeholder={'Enter your message'} />
-            <button>add post</button>
+            <div className={s.addPostButton}>
+                <button>Post</button>
+            </div>
         </form>
     )
 }

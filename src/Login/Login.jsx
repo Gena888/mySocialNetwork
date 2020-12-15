@@ -14,10 +14,18 @@ const LoginForm = ({ handleSubmit, error, captchaUrl, setErrorThunk, inStateErro
             {/* createField = (validate, placeholder, component, name, type) */}
             {createField([required], 'Email', Input, 'email', 'text')}
             {createField([required], 'Password', Input, 'password', 'text')}
-            {createField([], null, Input, 'rememberMe', 'checkbox')}
+
             {captchaUrl && createField([required], 'Captha', Input, 'captcha', 'text')}
-            <div>
-                <button>LOGIN</button>
+            <div className={s.buttonAndRemember}>
+                <div className={s.loginButton}>
+                    <button>LOGIN</button>
+                </div>
+                <div className={s.rememberMeDiv}>
+                    <label >
+                        {createField([], null, Input, 'rememberMe', 'checkbox')}
+                        <span>remember me</span>
+                    </label>
+                </div>
             </div>
             {error ? setErrorThunk(error) : null}
             <div className={inStateError || captchaUrl ? s.formSummeryError : ''}>
