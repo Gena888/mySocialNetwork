@@ -2,6 +2,7 @@ import React from 'react';
 import s from './Header.module.css';
 import { NavLink } from 'react-router-dom';
 import no_ava from '../../imagas/no-avatar.png';
+import logo from './../../svg/Henadzi.png';
 
 const Header = (props) => {
     let srcOfImg = '';
@@ -18,8 +19,8 @@ const Header = (props) => {
     // debugger
     return (
         <header className={s.header}>
-            <div  className={s.innerHeader}>
-                <img src="https://sun1.beltelecom-by-minsk.userapi.com/impf/c847220/v847220418/c6148/DDmHnFk6Uvw.jpg?size=811x959&quality=96&proxy=1&sign=ee3b4d32afdbd5e8cff1545a788a68bd" alt="" />
+            <div className={s.innerHeader}>
+                <img src={logo} alt="" />
                 <div className={s.loginBlock} >
 
                     {props.state.photos
@@ -32,15 +33,16 @@ const Header = (props) => {
 
 
 
-
-                    {props.isAuth
-                        ? <div>{props.login} - <button onClick={props.LogoutThunk}>Logout</button></div>
-                        : <NavLink to={'/Login'} >Login</NavLink>
-                    }
-                </div>
+                    <div className={s.loginBlock}>
+                        {props.isAuth
+                            ? <div> <span className={s.loginEmail}>{props.login}</span>  <button onClick={props.LogoutThunk}>Logout</button></div>
+                            : <NavLink to={'/Login'} >Login</NavLink>
+                        }
+                    </div>
+            </div>
             </div>
 
-        </header>
+        </header >
     );
 }
 
