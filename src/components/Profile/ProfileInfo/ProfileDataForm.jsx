@@ -9,14 +9,14 @@ import sForm from './../../Common/FormsControls/FormsControls.module.css'
 
 const ProfileDataForm = ({ handleSubmit, profile, error }) => {
     return (
-        <div>
-            <span>you are in editMode</span>
+        <div className={s.profileDataForm}>
+
             {/* createField = (validate, placeholder, component, name, type) */}
 
             {/* save button */}
             <form onSubmit={handleSubmit} >
-                <div>
-                    <button>save</button>
+                <div className={s.profileDataFormDiv + ' ' + s.saveDiv}>
+                    <button>Save</button>
                 </div>
                 {/* error message */}
                 {error &&
@@ -25,36 +25,42 @@ const ProfileDataForm = ({ handleSubmit, profile, error }) => {
                     </div>}
 
                 {/* full name */}
-                <div>
-                    <b>Full name: </b>
-                    {createField([], 'Full name', Input, "fullName", 'text')}
-                </div>
+                <div className={s.mainInfo}>
+                    <div className={s.profileDataFormDiv}>
+                        <b>Full name: </b>
+                        {createField([], 'Full name', Input, "fullName", 'text')}
+                    </div>
 
-                {/* aboutme */}
-                <div>
-                    <b>abot me: </b>
-                    {createField([], 'About me', Textarea, "aboutMe", 'text')}
+                    {/* aboutme */}
+                    <div className={s.profileDataFormDiv}>
+                        <b>Abot me: </b>
+                        {createField([], 'About me', Textarea, "aboutMe", 'text', '1')}
+                    </div>
+
+                    {/* job descriptoin */}
+                    <div className={s.profileDataFormDiv}>
+                        <b>My prof skills: </b>
+                        {createField([], 'My professional skills', Textarea, "lookingForAJobDescription", 'text', '1')}
+                    </div>
+                    {/* job */}
+                    <div className={s.profileDataFormDiv + ' ' + s.job}>
+                        <b>Looking wor a job: </b>
+                        <span>
+                            {createField([], '', Input, "lookingForAJob", 'checkbox')}
+                        </span>
+                    </div>
                 </div>
-                {/* job */}
-                <div>
-                    <b>Looking wor a job: </b>
-                    {createField([], '', Input, "lookingForAJob", 'checkbox')}
-                </div>
-                {/* job descriptoin */}
-                <div>
-                    <b>My professional skills: </b>
-                    {createField([], 'lookingForAJobDescription', Textarea, "lookingForAJobDescription", 'text')}
-                </div>
-                <div>
-                    <b>Contacts: </b>
+                <div className={s.contacts}>
                     {Object.keys(profile.contacts).map(key => {
                         return (
                             <div key={key} className={s.contact}>
-                                <b>{key}: {createField([], key, Input, "contacts." + key.toLocaleLowerCase(), 'text')}</b>
+                                <div className={s.profileDataFormDiv + ' ' + s.contactsBlog}>
+                                    <b>{key}: </b>
+                                    {createField([], key, Input, "contacts." + key.toLocaleLowerCase(), 'text')}
+                                </div>
                             </div>)
                     })}
                 </div>
-
             </form >
 
 

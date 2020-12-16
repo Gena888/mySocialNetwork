@@ -27,17 +27,19 @@ const ProfileData = ({ profile, }) => {
                     <b>Abot me: </b>
                     {profile.aboutMe}
                 </div>
+
+
+                {/* job descriptoin */}
+                <div>
+                    <b>My professional skills: </b>
+                    {profile.lookingForAJobDescription}
+                </div>
                 {/* jobb */}
                 <div>
                     <b>Looking wor a job: </b>
                     {profile.lookingForAJob
                         ? 'yes'
                         : 'no'}
-                </div>
-                {/* job descriptoin */}
-                <div>
-                    <b>My professional skills: </b>
-                    {profile.lookingForAJobDescription}
                 </div>
             </div>
 

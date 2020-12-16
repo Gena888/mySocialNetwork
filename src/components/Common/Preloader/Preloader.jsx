@@ -1,11 +1,15 @@
 import preloader from '../../../svg/Eclipse-1s-200px.svg';
 import React from 'react';
+import s from './Preloader.module.css';
+
 
 const Preloader = (props) => {
     return (
-        <div>
-            < img alt='preloader' src={preloader} />
-            <h1>LOADING, W8 PLZzz</h1>
+        <div class={s.ldsEllipsis}>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
         </div>
 
     )

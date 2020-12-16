@@ -33,7 +33,7 @@ export const Input = (props) => {
     )
 }
 
-export const createField = (validate, placeholder, component, name, type) => (
+export const createField = (validate, placeholder, component, name, type, rows) => (
     <div>
         <Field
             validate={validate}
@@ -41,6 +41,7 @@ export const createField = (validate, placeholder, component, name, type) => (
             component={component}
             name={name}
             type={type}
+            rows={rows}
         />
     </div>
 )
