@@ -33,6 +33,7 @@
   color: #FFFBF5;
   outline: none;
   margin-left: 10px;
+  cursor: pointer;
 }
 
 .loginEmail {

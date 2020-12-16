@@ -23,7 +23,7 @@
 
 .userStatus {}
 
-.button button{
+.button button {
     padding: 4px 8px 3px 8px;
     border-radius: 10%;
     border: none;
@@ -31,4 +31,5 @@
     font-family: sans-serif;
     color: #FFFBF5;
     outline: none;
+    cursor: pointer;
 }

@@ -5,8 +5,10 @@ import no_ava from '../../imagas/no-avatar.png';
 import logo from './../../svg/Henadzi.png';
 
 const Header = (props) => {
+  
+
+
     let srcOfImg = '';
-    // debugger
     if (props.state.photos != null) {
 
         if (props.isAuth && props.state.photos.small != null) {
@@ -15,8 +17,9 @@ const Header = (props) => {
             srcOfImg = no_ava;
         }
     }
-
-    // debugger
+    // const onLogoutClick = () => {
+        
+    // }
     return (
         <header className={s.header}>
             <div className={s.innerHeader}>

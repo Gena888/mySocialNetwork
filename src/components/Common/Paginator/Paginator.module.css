@@ -17,7 +17,6 @@
 
 .pageNumber.selectedPage {
     font-weight: bold;
-    border-color: black;
     border-bottom: solid 3px #80A8CC;
 }
 
@@ -38,4 +37,5 @@
     font-family: sans-serif;
     color: #FFFBF5;
     outline: none;
+    cursor: pointer;
 }

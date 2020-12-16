@@ -38,6 +38,7 @@
     font-family: sans-serif;
     color: #FFFBF5;
     outline: none;
+    cursor: pointer;
 }
 
 .loginButton button:hover {

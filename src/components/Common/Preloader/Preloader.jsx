@@ -5,7 +5,7 @@ import s from './Preloader.module.css';
 
 const Preloader = (props) => {
     return (
-        <div class={s.ldsEllipsis}>
+        <div className={s.ldsEllipsis}>
             <div></div>
             <div></div>
             <div></div>
