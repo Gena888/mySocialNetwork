@@ -23,16 +23,58 @@
 
 .onImgButtons {
     position: absolute;
-    top: 89.5%;
+    top: 88.7%;
     display: flex;
-    margin-right: -3px ;
-    background-color: red;
+    margin-right: -3px;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
 }
 
-.changePhotoBtn {}
+.changePhotoBtn input {
+    position: absolute;
+    overflow: hidden;
+    z-index: -1;
+    width: 0.1px;
+    height: 0.1px;
+    opacity: 0;
+}
 
-.editButton {
-    margin-left: -41px ;
+.changePhotoBtn label {
+    padding: 6px 10px 5px 10px;
+    border-radius: 0%;
+    border: none;
+    background-color: #80A8CC;
+    font-family: sans-serif;
+    color: #FFFBF5;
+    outline: none;
+    font-size: 14px;
+    opacity: 0.5;
+    transition: .2s;
+}
+
+.changePhotoBtn label:hover {
+    opacity: 1;
+    transition: .2s;
+}
+
+.editButton button {
+    padding: 5px 10px 5px 10px;
+    border-radius: 0%;
+    border: none;
+    background-color: #80A8CC;
+    font-family: sans-serif;
+    color: #FFFBF5;
+    outline: none;
+    font-size: 15px;
+    position: relative;
+    top: -2px;
+    opacity: 0.5;
+}
+
+.editButton button:hover {
+    opacity: 1;
+    transition: .2s;
 }
 
 .userPhoto {

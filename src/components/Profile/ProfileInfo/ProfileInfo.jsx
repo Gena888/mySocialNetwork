@@ -46,13 +46,14 @@ const ProfileInfo = ({
                         <div className={s.onImgButtons}>
                             <div className={s.changePhotoBtn}>
                                 {/* changePhoto button */}
-                                {isOwner && <input type={'file'} title=' ' onChange={onMainPhotoSelected} />}
+                                {isOwner && <input id='upload' type={'file'} title=' ' onChange={onMainPhotoSelected} />}
+                                <label htmlFor='upload'>Change photo</label>
                             </div>
                             <div>
                                 {/* eddit button */}
                                 {isOwner &&
                                     <div className={s.editButton}>
-                                        <button onClick={() => { setEditMode(true) }}>edit</button>
+                                        <button onClick={() => { setEditMode(true) }}>Edit info</button>
                                     </div>}
                             </div>
                         </div>
