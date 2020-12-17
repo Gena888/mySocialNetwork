@@ -103,7 +103,7 @@ export const updateStatusThunk = (status) => async (dispatch) => {
             dispatch(setStatus(status));
         }
     } catch (error) {
-        console.lor(error)
+        console.log(error)
     }
 }
 
