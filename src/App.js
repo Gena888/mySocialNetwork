@@ -1,7 +1,7 @@
 import React, { Component, lazy, Suspense } from 'react';
 import './App.css';
 import Settings from './components/Settings/Settings';
-import { Route, withRouter, BrowserRouter, Redirect, Switch } from 'react-router-dom';
+import { Route, withRouter, BrowserRouter, Redirect, Switch, HashRouter } from 'react-router-dom';
 import DialogsContainer from './components/Dialogs/DialogsContainer';
 import NavContainer from './components/Nav/NavContainer';
 import UsersContainer from './components/Users/UsersContainer';
@@ -81,11 +81,11 @@ let AppContainer = compose(
 
 const SamuraiJsApp = () => {
   return (
-    <BrowserRouter>
+    <HashRouter>
       <Provider store={store}>
         <AppContainer />
       </Provider>
-    </BrowserRouter>
+    </HashRouter>
   )
 }
 
