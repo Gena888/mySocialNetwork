@@ -10,6 +10,14 @@
     /* flex-direction: column; */
 }
 
+@media (max-device-width: 768px) {
+    .descriptionBlock {
+        padding: 10px;
+        display: flex;
+        flex-direction: column;
+    }  
+}
+
 /* imageBlock */
 
 .imageBlock {
@@ -21,7 +29,7 @@
 
 .innetImageBlock {
     position: relative;
-    flex-basis: content;
+    /* flex-basis: content; */
 }
 
 .onImgButtons {
@@ -32,6 +40,7 @@
     width: 100%;
     display: flex;
     justify-content: space-between;
+    max-width: 250px;
 }
 
 .changePhotoBtn input {
@@ -132,7 +141,6 @@
 
 .textInfoBlock div {
     padding: 5px 0 0 0;
-    text-transform: ;
 }
 
 /* innerContactsBlock */
@@ -192,6 +200,12 @@
     margin-left: -270px;
 }
 
+@media (max-device-width: 768px) {
+    .contacts {
+        margin-left: 0
+    }
+}
+
 .mainInfo div {
 }
 
@@ -211,6 +225,14 @@
 .contactsBlog input {
     width: 70%
 }
+
+@media (max-device-width: 768px) {
+    .contactsBlog input {
+        width: 100%
+    }
+}
+
+
 .job input {
     margin-left: -50px;
     
@@ -233,3 +255,14 @@
     outline: none;
 
 }
+
+@media (max-device-width: 425px) {
+    .saveDiv button{
+        margin-left: -70px;
+  }
+}  
+@media (max-device-width: 768px) {
+    .saveDiv button{
+        margin-left: -30px;
+  }
+}  

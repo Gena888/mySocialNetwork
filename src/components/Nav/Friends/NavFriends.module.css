@@ -3,7 +3,12 @@
     align-items: center;
     margin-left: -10px;  
     padding-top: 10px;  
+}
 
+@media (max-device-width: 425px) {
+    .navFriendsElement {
+        flex-direction: column;
+    }
 }
 
 .navFriendsElement img {
