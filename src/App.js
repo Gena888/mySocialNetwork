@@ -81,11 +81,11 @@ let AppContainer = compose(
 
 const SamuraiJsApp = () => {
   return (
-    <HashRouter>
+    <BrowserRouter>
       <Provider store={store}>
         <AppContainer />
       </Provider>
-    </HashRouter>
+    </BrowserRouter>
   )
 }
 
