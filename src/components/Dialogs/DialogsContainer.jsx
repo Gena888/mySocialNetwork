@@ -4,6 +4,8 @@ import Dialogs from './Dialogs';
 import { withAuthRedirect } from './../../Hoc/withAuthRedirect';
 import { compose } from 'redux';
 import { withRouter } from 'react-router-dom';
+import { reset } from 'redux-form';
+
 
 
 let mapStateToProps = (state) => {
@@ -19,6 +21,9 @@ let mapDispatchToProps = (dispatch) => {
     return {
         sendMessage: (newMessageBody) => {
             dispatch(addNewMessageAC(newMessageBody));
+        },
+        resetForm: (formName) => {
+            dispatch(reset(formName));
         }
 
     }

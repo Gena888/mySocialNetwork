@@ -1,6 +1,7 @@
 import { connect } from 'react-redux';
 import { addNewPostAC} from './../../../redux/profile-reducer';
 import MyPosts from './MyPosts';
+import { reset } from 'redux-form';
 
 
 const mapStateToProps = (state) => {
@@ -15,6 +16,9 @@ const mapDispatchToProps = (dispatch) => {
 
         addPost: (newTextBody) => {
             dispatch(addNewPostAC(newTextBody));
+        },
+        resetForm: (formName) => {
+            dispatch(reset(formName));
         }
     }
 }

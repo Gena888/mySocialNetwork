@@ -12,6 +12,7 @@ const Dialogs = (props) => {
 
     let addNewMessage = (values) => {
         props.sendMessage(values.newMessageBody);
+        props.resetForm('dialogAddMessageForm')
     };
 
     let dialogsElements =
