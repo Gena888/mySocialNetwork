@@ -8,13 +8,13 @@
   align-items: center;
 }
 
-@media (max-device-width: 768px) {
+@media (max-width: 768px) {
   .nav {
     min-width: 140px;
   }
 }
 
-@media (max-device-width: 425px) {
+@media (max-width: 425px) {
   .nav {
     min-width: 100px;
   }
@@ -34,7 +34,7 @@
   font-size: 16px;
 }
 
-@media (max-device-width: 425px) {
+@media (max-width: 425px) {
   .item a{
     margin-left: 10px;
   }
@@ -51,7 +51,7 @@
   transition: 0.1s;
 }
 
-@media (max-device-width: 425px) {
+@media (max-width: 425px) {
   .item .active{
     margin-left: 10px;
   }
@@ -77,7 +77,7 @@
   letter-spacing: 0.15em;
 }
 
-@media (max-device-width: 425px) {
+@media (max-width: 425px) {
   .navFriends h2 {
     font-size: 20px;
   }

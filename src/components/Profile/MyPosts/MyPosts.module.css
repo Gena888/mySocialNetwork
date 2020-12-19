@@ -32,6 +32,17 @@
   left: 92%;
 }
 
+@media (max-width: 768px) {
+  .addPostButton {
+    position: absolute;
+    top: 42%;
+    left: 85%;
+  }
+  .addPostForm textarea {
+    width: 80%;
+  }
+}
+
 .addPostButton button {
   padding: 6px 10px 5px 10px;
   border-radius: 10%;
