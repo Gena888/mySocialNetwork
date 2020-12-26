@@ -18,6 +18,18 @@
     height: 70%;
 }
 
+@media (max-width: 415px) {
+    .loginInner {
+        padding-left: 80px;
+        margin-left: -100px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        height: 70%;
+    }
+}
+
 .loginInner h1 {
     text-transform: capitalize;
     letter-spacing: .1em;
